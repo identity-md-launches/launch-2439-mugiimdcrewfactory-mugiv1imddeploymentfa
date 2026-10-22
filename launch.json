@@ -4,27 +4,27 @@
     {
       "contract": "MugiIMDCrewFactory",
       "constructorArgs": [
-        "0x20714d50f4675c366de30b603728a90ddddb240f"
+        "$owner"
       ]
     },
     {
       "contract": "MugiV1IMDDeploymentFactory",
       "constructorArgs": [
-        "0x20714d50f4675c366de30b603728a90ddddb240f"
+        "$owner"
       ]
     },
     {
       "contract": "MugiIMDAccountingFactory",
       "constructorArgs": [
-        "0x20714d50f4675c366de30b603728a90ddddb240f"
+        "$owner"
       ]
     },
     {
       "contract": "MugiIMDEngineFactory",
       "constructorArgs": [
-        "0x20714d50f4675c366de30b603728a90ddddb240f"
+        "$owner"
       ]
     }
   ],
-  "notes": "Four owner-bound operational factories, each with one static owner constructor argument; no constructor dependency calls, code checks or child creation. Disclose and review all nineteen later full-code application descendants and five owner creation transactions. Every application is fully constructor-configured: no initialize/configure/bindAccounting or mutable dependencies. Tokens have constructor-only fixed reserves, no later mint, no transfer freeze or owner pause; game elimination/rewards use timestamp cutoffs and bounded reserve releases. V1 competition, reward distribution and V2 handoff remain. Raw hook creation code is pinned by the main factory constructor; full hook initcode/salt are committed during module creation. See docs/IMD_CONSTRUCTOR_DEPLOYMENT.md. Remote admission and deployment remain unproven. Factory registry entries do not individually index descendants. No explorer source verification."
+  "notes": "Ethereum mainnet contracts-only scope: four full-code factories in the listed order; $owner resolves to 0x20714d50f4675c366de30b603728a90ddddb240f. Each constructor is nonpayable with one static address owner argument and no child creation, dependency calls or external-code checks. Implementation source pin: 2907a8fec35bd79bde8f699ec8502bb5d644a3a4; this assignment changes only the manifest. Preserve Solidity 0.8.26, Cancun, optimizer 200, viaIR and bytecode_hash none. The main factory constructor pins the exact raw hook creation-code hash and length without constructor arguments. Five later owner transactions create nineteen disclosed descendants: ten crew ERC20s, hook, airdrop, swap router, VRF adapter, IMD verifier, ledger, budget controller, price oracle and V4 liquidity engine. Fixed CREATE nonces predict dependencies; service-module creation commits the complete static hook tuple via its full initcode hash and mined CREATE2 salt. deployHook checks that commitment and the pinned raw code. Children are constructor-complete; no initialize/configure/bindAccounting or dependency replacement. Economic activation checks reciprocal bindings, token identity and ledger exclusions. Four registry entries index factories only; this request neither deploys children nor seeds pools or activates the game. Ten crews, initial 95/5 LP/airdrop allocation, daily cutoffs, nine VRF eliminations, 75% loser conversion, pro-rata treasures, LP redistribution, bounded buybacks, team fees, timeout recovery and thirty-day final claims remain. Tokens create their finite reserve once in constructors; totalSupply includes unused reserve, not circulating supply. No external mint, transfer freeze, hook token callback, holder confiscation or owner trading pause; burn affects only the caller. Unused reserve is ineligible and retired at crew/season closure. Snapshots strictly before cutoffs preserve earned rights. Official pools retain phase/alive/cutoff gates; token reward materialization pauses during resolution and follows final-claim expiry. PoolManager custody, including third-party V4 LP balances, is excluded from wallet rewards; contract wallets must claim for themselves. Compared with audited commit 9901dc71030df5818e4b307df1c5c43506346c12, job 0c8421fb-4f6d-4650-8c90-d9fd7d7a79c5, report 573ea9d5650bafcdc892589b64157aecbe9239f7efb89fa37b3d9bed699654f2, the hook repairs receiver selection, finale liveness and treasury aliasing. Report acceptance was not a clean audit. The nonzero immutable V2 receiver must differ from owner/team/community; anyone may execute the one-shot atomic handoff only in the ordinary-finale thirty-day window. Unused reserve is retired first; earned token backing and player/team ETH stay reserved. Receiver failure rolls back all transfers. At the deadline permissionless community fallback transfers only unallocated protocol assets; claims follow their published expiry. Emergency migration is prohibited. Community cannot equal owner/team, including after ownership transfer; the V2 receiver cannot become owner. Planned community 0x973d5993Be7021882f72da0babCF884e77F76bBb is a distinct same-operator wallet, not independent DAO custody. The child plan's V2 receiver remains null/unresolved; its reviewed real address, service coordinator/subscription, attestor, signer and final graph are required before child creation. No live mocks. V2 is separate future work; handoff grants no automatic wallet-level allocation. See ADAPTATION.md, docs/IMD_CONSTRUCTOR_DEPLOYMENT.md and docs/validation, distinguishing historical V2 integration/local receipts from this source. Full admission, renewed independent audit and final gas simulation including code deposit remain required; local validation supplies no admission or deployment authority. No production launch record, factory addresses or receipts are asserted. No explorer source verification; if mandatory, stop before deployment for requester input."
 }
