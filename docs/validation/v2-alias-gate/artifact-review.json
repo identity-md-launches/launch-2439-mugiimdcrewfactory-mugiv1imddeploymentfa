@@ -1,0 +1,968 @@
+{
+  "reviewedAtUtc": "2026-10-22T00:13:38.681152+00:00",
+  "root": "/root/.identitymd/work/9b411387-9c65-4aac-83b7-8d40e4ff1e88/79d3b15c-d5e0-4b38-b8ba-de046bf860d2",
+  "artifactTypesChecked": 15,
+  "deployedContractTypes": 14,
+  "factoryTypes": 4,
+  "descendantTypes": 10,
+  "descendantInstances": 19,
+  "compiledSourcesMatch": true,
+  "sourceFilesChecked": 75,
+  "allProductionSizesValid": true,
+  "allConstructorsStaticNonpayableAtMost16Words": true,
+  "policyCapabilitiesRemoved": true,
+  "policyCheckScope": "Reviewed ABI/source removal of postconstructor crew mint, token transfer freeze, owner pause and application initialization/configuration APIs. This is not remote policy admission or a complete security audit.",
+  "forbiddenFunctionNamesChecked": [
+    "bindAccounting",
+    "bindEngine",
+    "bindModules",
+    "configure",
+    "disableTransfers",
+    "enableTransfers",
+    "freeze",
+    "freezeTransfers",
+    "freezeWallet",
+    "initialize",
+    "initializeSeason",
+    "mint",
+    "mintBatch",
+    "mintFor",
+    "mintForMigration",
+    "mintTo",
+    "pause",
+    "setEngine",
+    "setExcluded",
+    "setFrozen",
+    "setLedger",
+    "setPause",
+    "setPauseUntil",
+    "setPaused",
+    "setPolicy",
+    "setTradingEnabled",
+    "setTransferGate",
+    "setTransfersEnabled",
+    "unfreeze",
+    "unpause"
+  ],
+  "tokenSourceChecks": {
+    "supplyWrites": {
+      "constructor": "assign fixed reserve",
+      "burn": "subtract caller-owned amount"
+    },
+    "transferAndTransferFrom": "exact reviewed standard balance/allowance semantics; no hook or lifecycle gate",
+    "tokenHookPrivilege": false,
+    "sourceSha256": "4da2978c9863692db48021b31fb45ac76e9ee913acf966cd0d22081ee4657134"
+  },
+  "hookRawCreationCodeHash": "0x53dae9ddbc8d673f9489f01afbd240331231d723e052e2ecf82b82fa68852b64",
+  "commitmentCheck": {
+    "manifestMatches": true,
+    "compiledSourcesMatch": true,
+    "sourceFilesChecked": 75,
+    "manifestEntries": 4,
+    "disclosedDescendants": 19,
+    "hookRawCreationCodeHash": "0x53dae9ddbc8d673f9489f01afbd240331231d723e052e2ecf82b82fa68852b64",
+    "hookRuntimeBytes": 23635,
+    "hookInitcodeBytesWithCompleteConfiguration": 26079,
+    "factories": {
+      "MugiIMDCrewFactory": {
+        "runtimeBytes": 7180,
+        "initcodeBytesIncludingOwner": 7366
+      },
+      "MugiV1IMDDeploymentFactory": {
+        "runtimeBytes": 21064,
+        "initcodeBytesIncludingOwner": 47002
+      },
+      "MugiIMDAccountingFactory": {
+        "runtimeBytes": 18963,
+        "initcodeBytesIncludingOwner": 19148
+      },
+      "MugiIMDEngineFactory": {
+        "runtimeBytes": 13168,
+        "initcodeBytesIncludingOwner": 13353
+      }
+    },
+    "deploymentReady": false,
+    "remaining": "Predict final module addresses, encode/review the complete 14-field hook tuple, mine its CREATE2 salt, and simulate exact authorized calls. Remote IMD admission is not established."
+  },
+  "contracts": [
+    {
+      "contract": "MugiIMDCrewFactory",
+      "role": "factory",
+      "instances": 1,
+      "runtimeBytes": 7180,
+      "runtimeHeadroomBytes": 17396,
+      "rawCreationBytes": 7334,
+      "constructorStaticWords": 1,
+      "constructorInputs": [
+        {
+          "name": "owner_",
+          "type": "address",
+          "internalType": "address"
+        }
+      ],
+      "initcodeBytesIncludingArguments": 7366,
+      "initcodeHeadroomBytes": 41786,
+      "nonpayableConstructor": true,
+      "creationCodeHash": "0xbdea60adecad092b49ae6927dabba682caebaafa6680868410b632d9d3050b49",
+      "artifactSha256": "a6c4aac89a0cc4b1d681f7f8fddb11ea2b4939b404a0faed8bf4d3cc292d0db3",
+      "functionSelectors": {
+        "allTokens()": "6ff97f1d",
+        "deployCrewSet(address,uint256)": "a6ab6dec",
+        "hook()": "7f5a7c7b",
+        "owner()": "8da5cb5b",
+        "predictCrewSet()": "b68e9c7a",
+        "tokens(uint256)": "4f64b2be"
+      },
+      "forbiddenFunctionsFound": []
+    },
+    {
+      "contract": "MugiV1IMDDeploymentFactory",
+      "role": "factory",
+      "instances": 1,
+      "runtimeBytes": 21064,
+      "runtimeHeadroomBytes": 3512,
+      "rawCreationBytes": 46970,
+      "constructorStaticWords": 1,
+      "constructorInputs": [
+        {
+          "name": "owner_",
+          "type": "address",
+          "internalType": "address"
+        }
+      ],
+      "initcodeBytesIncludingArguments": 47002,
+      "initcodeHeadroomBytes": 2150,
+      "nonpayableConstructor": true,
+      "creationCodeHash": "0x9573189fc5bf5dc919b0347572fdce96a3c85364517aced86fe6f591be2989f6",
+      "artifactSha256": "3637dadc562b80b183af3348f77e28cd126c0dc22977bda66927b88434b7ccb1",
+      "functionSelectors": {
+        "airdrop()": "3884d635",
+        "allTokens()": "6ff97f1d",
+        "crewFactory()": "ad33918d",
+        "deployHook(bytes)": "b8d0b23a",
+        "deployModules(bytes32,bytes32,(address,address,bytes32,uint256,uint32,bool,address,address,uint16,uint16,uint64,address,address,uint256))": "4fa20a27",
+        "hook()": "7f5a7c7b",
+        "hookCreationCodeHash()": "8f0c9340",
+        "hookCreationCodeLength()": "c17bfa4f",
+        "hookInitCodeHash()": "8895b69a",
+        "hookSalt()": "4c2f2394",
+        "imdVerifier()": "21f57047",
+        "initialSupply()": "378dc3dc",
+        "modulesDeployed()": "ea499263",
+        "owner()": "8da5cb5b",
+        "plannedHook()": "8897722e",
+        "poolManager()": "dc4c90d3",
+        "predictHook(bytes32,bytes32)": "045b039c",
+        "predictModules()": "b658453a",
+        "router()": "f887ea40",
+        "tokens(uint256)": "4f64b2be",
+        "vrf()": "0c949043"
+      },
+      "forbiddenFunctionsFound": []
+    },
+    {
+      "contract": "MugiIMDAccountingFactory",
+      "role": "factory",
+      "instances": 1,
+      "runtimeBytes": 18963,
+      "runtimeHeadroomBytes": 5613,
+      "rawCreationBytes": 19116,
+      "constructorStaticWords": 1,
+      "constructorInputs": [
+        {
+          "name": "owner_",
+          "type": "address",
+          "internalType": "address"
+        }
+      ],
+      "initcodeBytesIncludingArguments": 19148,
+      "initcodeHeadroomBytes": 30004,
+      "nonpayableConstructor": true,
+      "creationCodeHash": "0xa0a571f7418bd0cb868565f5f4a19201805092c2fd9771f2e43e7c31198b1974",
+      "artifactSha256": "f69c8eb524d68f36fe6ce13c3445f9f741ba74fcdc57b2b822972c7ada1588fe",
+      "functionSelectors": {
+        "deployForHook((address,address,address,address,address,address,address,address,address,address,address,address,address,address,address,address))": "4a84a57d",
+        "modules()": "f7e80e98",
+        "owner()": "8da5cb5b",
+        "predictModules()": "b658453a"
+      },
+      "forbiddenFunctionsFound": []
+    },
+    {
+      "contract": "MugiIMDEngineFactory",
+      "role": "factory",
+      "instances": 1,
+      "runtimeBytes": 13168,
+      "runtimeHeadroomBytes": 11408,
+      "rawCreationBytes": 13321,
+      "constructorStaticWords": 1,
+      "constructorInputs": [
+        {
+          "name": "owner_",
+          "type": "address",
+          "internalType": "address"
+        }
+      ],
+      "initcodeBytesIncludingArguments": 13353,
+      "initcodeHeadroomBytes": 35799,
+      "nonpayableConstructor": true,
+      "creationCodeHash": "0x0d97ebaca857ff568b845300e251575e510003f4d46a3b26bacedb063ae1ba79",
+      "artifactSha256": "144c538b632fa92eff7bfe4081d0b31abe1e1e7233a90ad6156739f1fe0af78b",
+      "functionSelectors": {
+        "deployForHook(address,address)": "ae48e3dc",
+        "engine()": "c9d4623f",
+        "owner()": "8da5cb5b",
+        "predictEngine()": "129e21a6"
+      },
+      "forbiddenFunctionsFound": []
+    },
+    {
+      "contract": "MugiIMDCrewToken",
+      "role": "descendant",
+      "instances": 10,
+      "runtimeBytes": 3309,
+      "runtimeHeadroomBytes": 21267,
+      "rawCreationBytes": 5770,
+      "constructorStaticWords": 3,
+      "constructorInputs": [
+        {
+          "name": "crew_",
+          "type": "uint8",
+          "internalType": "uint8"
+        },
+        {
+          "name": "hook_",
+          "type": "address",
+          "internalType": "address"
+        },
+        {
+          "name": "initialSupply_",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "initcodeBytesIncludingArguments": 5866,
+      "initcodeHeadroomBytes": 43286,
+      "nonpayableConstructor": true,
+      "creationCodeHash": "0x19917df3673fb3b3cb0fce8e2eee220047ca47caf8d4d2bf4bad637ae381476a",
+      "artifactSha256": "135390db764a0ee5bd55c2cdf8695260f891e62b178cd27f78d089e10e8029af",
+      "functionSelectors": {
+        "allowance(address,address)": "dd62ed3e",
+        "approve(address,uint256)": "095ea7b3",
+        "balanceBefore(address,uint64)": "8373f92d",
+        "balanceOf(address)": "70a08231",
+        "burn(uint256)": "42966c68",
+        "characterId()": "a07a3550",
+        "crewId()": "71d3a4b9",
+        "decimals()": "313ce567",
+        "hook()": "7f5a7c7b",
+        "initialSupply()": "378dc3dc",
+        "name()": "06fdde03",
+        "reserveCap()": "2223a5da",
+        "reserveFor(uint256)": "6542ed86",
+        "symbol()": "95d89b41",
+        "totalSupply()": "18160ddd",
+        "totalSupplyBefore(uint64)": "f9670283",
+        "transfer(address,uint256)": "a9059cbb",
+        "transferFrom(address,address,uint256)": "23b872dd"
+      },
+      "forbiddenFunctionsFound": []
+    },
+    {
+      "contract": "MugiIMDGameHook",
+      "role": "descendant",
+      "instances": 1,
+      "runtimeBytes": 23635,
+      "runtimeHeadroomBytes": 941,
+      "rawCreationBytes": 25631,
+      "constructorStaticWords": 14,
+      "constructorInputs": [
+        {
+          "name": "c",
+          "type": "tuple",
+          "internalType": "struct MugiIMDGameHook.Configuration",
+          "components": [
+            {
+              "name": "owner",
+              "type": "address",
+              "internalType": "address"
+            },
+            {
+              "name": "manager",
+              "type": "address",
+              "internalType": "address"
+            },
+            {
+              "name": "team",
+              "type": "address",
+              "internalType": "address"
+            },
+            {
+              "name": "community",
+              "type": "address",
+              "internalType": "address"
+            },
+            {
+              "name": "v2MigrationTarget",
+              "type": "address",
+              "internalType": "address"
+            },
+            {
+              "name": "initialSupply",
+              "type": "uint256",
+              "internalType": "uint256"
+            },
+            {
+              "name": "ledger",
+              "type": "address",
+              "internalType": "address"
+            },
+            {
+              "name": "engine",
+              "type": "address",
+              "internalType": "address"
+            },
+            {
+              "name": "budgets",
+              "type": "address",
+              "internalType": "address"
+            },
+            {
+              "name": "prices",
+              "type": "address",
+              "internalType": "address"
+            },
+            {
+              "name": "randomnessProvider",
+              "type": "address",
+              "internalType": "address"
+            },
+            {
+              "name": "imdVerifier",
+              "type": "address",
+              "internalType": "address"
+            },
+            {
+              "name": "airdrop",
+              "type": "address",
+              "internalType": "address"
+            },
+            {
+              "name": "crewFactory",
+              "type": "address",
+              "internalType": "address"
+            }
+          ]
+        }
+      ],
+      "initcodeBytesIncludingArguments": 26079,
+      "initcodeHeadroomBytes": 23073,
+      "nonpayableConstructor": true,
+      "creationCodeHash": "0x53dae9ddbc8d673f9489f01afbd240331231d723e052e2ecf82b82fa68852b64",
+      "artifactSha256": "9d759a626e6534129a4b563cc8318870e1d0165cf0f1ba96739d613bec263ea9",
+      "functionSelectors": {
+        "FINAL_CLAIM_WINDOW()": "412cb9b4",
+        "HOOK_FLAGS()": "08b66372",
+        "RANDOMNESS_TIMEOUT()": "dd35e7aa",
+        "WINDOW()": "a53e5412",
+        "abortPrelaunch()": "886deaaf",
+        "acceptOwnership()": "79ba5097",
+        "afterSwap(address,(address,address,uint24,int24,address),(bool,int256,uint160),int256,bytes)": "b47b2fb1",
+        "airdrop()": "3884d635",
+        "airdropRetired()": "c36e158e",
+        "aliveMask()": "9899bcdc",
+        "approvePlan((uint64,uint64,uint64,uint256[10]),bytes)": "c373f5a0",
+        "beforeAddLiquidity(address,(address,address,uint24,int24,address),(int24,int24,int256,bytes32),bytes)": "259982e5",
+        "beforeDonate(address,(address,address,uint24,int24,address),uint256,uint256,bytes)": "b6a8b0fa",
+        "beforeInitialize(address,(address,address,uint24,int24,address),uint160)": "dc98354e",
+        "beforeRemoveLiquidity(address,(address,address,uint24,int24,address),(int24,int24,int256,bytes32),bytes)": "21d0ee70",
+        "beforeSwap(address,(address,address,uint24,int24,address),(bool,int256,uint160),bytes)": "575e24b4",
+        "budgets()": "37ed664e",
+        "buybackTwap(uint8)": "95cbd11d",
+        "cancelOwnershipTransfer()": "23452b9c",
+        "claimEth(address)": "228f3845",
+        "claimToken(uint8,uint256)": "9b704c03",
+        "claimTokens()": "48c54b9d",
+        "claimsExpireAt()": "44e1eba2",
+        "collectTeamFees(uint8)": "91fe6373",
+        "communityTreasury()": "58c12dbe",
+        "configuredAt()": "c78c6450",
+        "defeatedCrew()": "e8a48d55",
+        "eligibleSupply(uint8)": "988a4e20",
+        "eliminations()": "e1218c3c",
+        "engine()": "c9d4623f",
+        "escrowBacking(uint8)": "5bdacc94",
+        "executeBuyback(uint64,uint8,uint256)": "5f184554",
+        "executeOwnBuyback(uint8,uint256)": "825120d3",
+        "fallbackFinaleToCommunity()": "809e9edd",
+        "finalize()": "4bb278f3",
+        "imdVerifier()": "21f57047",
+        "initialSupply()": "378dc3dc",
+        "launch()": "01339c21",
+        "launchedAt()": "bf56b371",
+        "ledger()": "56397c35",
+        "migrateToV2(address)": "66ebd54c",
+        "migrated()": "2c678c64",
+        "migrationDeadline()": "83924de0",
+        "nextCutoff()": "03ebc126",
+        "ownBurnBudget(uint256)": "9f44cc9e",
+        "ownLastTrade(uint256)": "32afe342",
+        "owner()": "8da5cb5b",
+        "pendingOwner()": "e30c3978",
+        "pendingRequest()": "e2b0a15d",
+        "phase()": "b1c9fe6e",
+        "planHash((uint64,uint64,uint64,uint256[10]))": "79a6f864",
+        "poolId(uint8)": "49a7b69a",
+        "poolKey(uint8)": "4833b19a",
+        "poolManager()": "dc4c90d3",
+        "poolState(uint8)": "cdec28ff",
+        "positionLiquidity(uint8)": "97eb4efb",
+        "previewAccount(address)": "69a5ed3b",
+        "prices()": "d3419bf3",
+        "randomnessDeadline()": "ab9f8777",
+        "randomnessProvider()": "ce9bf5ac",
+        "receiveRandomness(uint256,uint256)": "210b9f03",
+        "recoverStalledRandomness(uint8)": "8c889094",
+        "requestElimination()": "6a8ded83",
+        "reservedPlayerEth()": "1e567915",
+        "retireAirdrop()": "4cab2702",
+        "roundBudget(uint64)": "f64d425e",
+        "seedPool(uint8)": "d1eee90b",
+        "seededMask()": "014d05b1",
+        "settleRound(uint8)": "dd72d4f5",
+        "settlementBuybackEth()": "3c5ba133",
+        "settlementCursor()": "eb82265e",
+        "settlementLiquidityEth()": "03588ab4",
+        "sweepExpiredFinalClaims()": "a37f6a9b",
+        "teamEth()": "3e7863f6",
+        "teamTokens(uint256)": "2358a915",
+        "teamTreasury()": "05fe562d",
+        "tokens(uint256)": "4f64b2be",
+        "transferOwnership(address)": "f2fde38b",
+        "treasure(uint256)": "a1cc1b82",
+        "unlockCallback(bytes)": "91dd7346",
+        "unredeemedGameFees()": "738e415e",
+        "unreleasedReserve(uint256)": "822dc2a3",
+        "v2MigrationTarget()": "a4704db0",
+        "withdrawTeamFees()": "9c797ca6"
+      },
+      "forbiddenFunctionsFound": []
+    },
+    {
+      "contract": "MugiIMDSwapRouter",
+      "role": "descendant",
+      "instances": 1,
+      "runtimeBytes": 3816,
+      "runtimeHeadroomBytes": 20760,
+      "rawCreationBytes": 4055,
+      "constructorStaticWords": 2,
+      "constructorInputs": [
+        {
+          "name": "hook_",
+          "type": "address",
+          "internalType": "contract MugiIMDGameHook"
+        },
+        {
+          "name": "manager",
+          "type": "address",
+          "internalType": "contract IPoolManager"
+        }
+      ],
+      "initcodeBytesIncludingArguments": 4119,
+      "initcodeHeadroomBytes": 45033,
+      "nonpayableConstructor": true,
+      "creationCodeHash": "0x836602571804953af8f1c5d320fc11387cd46e5acf125c13d8f086a50aa93e6a",
+      "artifactSha256": "85db58698d7caf438a6627c446afdab87b0e48a85aca30385f282fad4ebff77e",
+      "functionSelectors": {
+        "buy(uint8,uint256,uint64)": "1a4abbfd",
+        "hook()": "7f5a7c7b",
+        "poolManager()": "dc4c90d3",
+        "sell(uint8,uint256,uint256,uint64)": "8bd0860c",
+        "unlockCallback(bytes)": "91dd7346"
+      },
+      "forbiddenFunctionsFound": []
+    },
+    {
+      "contract": "MugiVRFAdapter",
+      "role": "descendant",
+      "instances": 1,
+      "runtimeBytes": 2560,
+      "runtimeHeadroomBytes": 22016,
+      "rawCreationBytes": 3026,
+      "constructorStaticWords": 6,
+      "constructorInputs": [
+        {
+          "name": "hook_",
+          "type": "address",
+          "internalType": "address"
+        },
+        {
+          "name": "coordinator_",
+          "type": "address",
+          "internalType": "address"
+        },
+        {
+          "name": "keyHash_",
+          "type": "bytes32",
+          "internalType": "bytes32"
+        },
+        {
+          "name": "subscriptionId_",
+          "type": "uint256",
+          "internalType": "uint256"
+        },
+        {
+          "name": "callbackGasLimit_",
+          "type": "uint32",
+          "internalType": "uint32"
+        },
+        {
+          "name": "nativePayment_",
+          "type": "bool",
+          "internalType": "bool"
+        }
+      ],
+      "initcodeBytesIncludingArguments": 3218,
+      "initcodeHeadroomBytes": 45934,
+      "nonpayableConstructor": true,
+      "creationCodeHash": "0x2a2fc30b7bd3eff9789aa4210b696f6d44820de1d6a20bc01156bfaf9e26bf00",
+      "artifactSha256": "c7dbd3d7d24ead80fbeeceda6da4e052fd6dddae35369cb06b783a3fefa80a00",
+      "functionSelectors": {
+        "EXTRA_ARGS_V1_TAG()": "f7514ab4",
+        "NUM_WORDS()": "72cf6e34",
+        "REQUEST_CONFIRMATIONS()": "67f082b0",
+        "activeRequestId()": "b57e51c4",
+        "callbackGasLimit()": "24f74697",
+        "coordinator()": "0a009097",
+        "fulfilledAt(uint256)": "f42540ea",
+        "hook()": "7f5a7c7b",
+        "keyHash()": "61728f39",
+        "nativePayment()": "5a175710",
+        "rawFulfillRandomWords(uint256,uint256[])": "1fe543e3",
+        "requestRandomness()": "f8413b07",
+        "requests(uint256)": "81d12c58",
+        "retryDelivery(uint256)": "e6f016b2",
+        "subscriptionId()": "09c1ba2e"
+      },
+      "forbiddenFunctionsFound": []
+    },
+    {
+      "contract": "MugiIMDVerifier",
+      "role": "descendant",
+      "instances": 1,
+      "runtimeBytes": 3943,
+      "runtimeHeadroomBytes": 20633,
+      "rawCreationBytes": 4578,
+      "constructorStaticWords": 6,
+      "constructorInputs": [
+        {
+          "name": "owner_",
+          "type": "address",
+          "internalType": "address"
+        },
+        {
+          "name": "signer_",
+          "type": "address",
+          "internalType": "address"
+        },
+        {
+          "name": "consumer_",
+          "type": "address",
+          "internalType": "address"
+        },
+        {
+          "name": "panelSize_",
+          "type": "uint16",
+          "internalType": "uint16"
+        },
+        {
+          "name": "quorum_",
+          "type": "uint16",
+          "internalType": "uint16"
+        },
+        {
+          "name": "maxAge_",
+          "type": "uint64",
+          "internalType": "uint64"
+        }
+      ],
+      "initcodeBytesIncludingArguments": 4770,
+      "initcodeHeadroomBytes": 44382,
+      "nonpayableConstructor": true,
+      "creationCodeHash": "0x335c9ae3081572147588c7fc46fc071ee908baeba8c2ab7b7ca43128ebe780f1",
+      "artifactSha256": "57f1788711131166eea9471503d470f0fe59840775f45c221d66db9f4ab5c9a1",
+      "functionSelectors": {
+        "ATTESTATION_TYPEHASH()": "07090c1f",
+        "attestationDigest((bytes32,uint256,bytes32,uint8,bytes,uint256,uint64,uint64,bytes32,bytes32,uint16,uint16,uint16,uint64,uint64))": "158a64e1",
+        "domainSeparator()": "f698da25",
+        "maximumAge()": "f2f62b30",
+        "minimumPanelSize()": "3d2731ac",
+        "minimumQuorum()": "8160f0b5",
+        "oracleSigner()": "1709a61b",
+        "owner()": "8da5cb5b",
+        "pinRequest(bytes32,bytes32,bytes32,uint64)": "de7b93ac",
+        "renounceOwnership()": "715018a6",
+        "requests(bytes32)": "9d866985",
+        "revokeRequest(bytes32)": "59ed0813",
+        "transferOwnership(address)": "f2fde38b",
+        "trustedConsumer()": "58043079",
+        "verify(bytes32,bytes,address)": "823ac373"
+      },
+      "forbiddenFunctionsFound": []
+    },
+    {
+      "contract": "MugiAirdrop",
+      "role": "descendant",
+      "instances": 1,
+      "runtimeBytes": 3659,
+      "runtimeHeadroomBytes": 20917,
+      "rawCreationBytes": 4443,
+      "constructorStaticWords": 13,
+      "constructorInputs": [
+        {
+          "name": "hook_",
+          "type": "address",
+          "internalType": "address"
+        },
+        {
+          "name": "attestor_",
+          "type": "address",
+          "internalType": "address"
+        },
+        {
+          "name": "initialSupply_",
+          "type": "uint256",
+          "internalType": "uint256"
+        },
+        {
+          "name": "tokens_",
+          "type": "address[10]",
+          "internalType": "address[10]"
+        }
+      ],
+      "initcodeBytesIncludingArguments": 4859,
+      "initcodeHeadroomBytes": 44293,
+      "nonpayableConstructor": true,
+      "creationCodeHash": "0x9c79f43b75d32fbb945124eea12272890702ebd23835d0b7db125f6bd1efc81b",
+      "artifactSha256": "b429db6003d73e8dd68867ebefc8cf0feaf8f8dc29d4e0f56910dbb4e1733228",
+      "functionSelectors": {
+        "AUTOMATIC_LAUNCH_REGISTRATIONS()": "8111b07a",
+        "CLAIM_TYPEHASH()": "6b0509b1",
+        "DOMAIN_SEPARATOR()": "3644e515",
+        "REGISTRATION_TYPEHASH()": "1494e2f6",
+        "allocation(uint256)": "850bad94",
+        "attestor()": "cada25c2",
+        "claim(uint64,bytes)": "79bffd8d",
+        "claimed(address)": "c884ef83",
+        "crewPlusOne(address)": "bd7528de",
+        "hook()": "7f5a7c7b",
+        "initialSupply()": "378dc3dc",
+        "launch()": "01339c21",
+        "launchEligible(uint64)": "ce986620",
+        "launchedAt()": "bf56b371",
+        "register(uint8,bytes32,uint64,bytes)": "7abe5861",
+        "registrations(uint256)": "f4ddb5be",
+        "retireRemaining()": "69f0bbfa",
+        "socialIdByAccount(address)": "b667e9ba",
+        "tokens(uint256)": "4f64b2be",
+        "usedSocialId(bytes32)": "fba9cca7"
+      },
+      "forbiddenFunctionsFound": []
+    },
+    {
+      "contract": "MugiIMDLedger",
+      "role": "descendant",
+      "instances": 1,
+      "runtimeBytes": 6277,
+      "runtimeHeadroomBytes": 18299,
+      "rawCreationBytes": 7960,
+      "constructorStaticWords": 16,
+      "constructorInputs": [
+        {
+          "name": "c",
+          "type": "tuple",
+          "internalType": "struct MugiIMDLedger.Configuration",
+          "components": [
+            {
+              "name": "hook",
+              "type": "address",
+              "internalType": "address"
+            },
+            {
+              "name": "token0",
+              "type": "address",
+              "internalType": "address"
+            },
+            {
+              "name": "token1",
+              "type": "address",
+              "internalType": "address"
+            },
+            {
+              "name": "token2",
+              "type": "address",
+              "internalType": "address"
+            },
+            {
+              "name": "token3",
+              "type": "address",
+              "internalType": "address"
+            },
+            {
+              "name": "token4",
+              "type": "address",
+              "internalType": "address"
+            },
+            {
+              "name": "token5",
+              "type": "address",
+              "internalType": "address"
+            },
+            {
+              "name": "token6",
+              "type": "address",
+              "internalType": "address"
+            },
+            {
+              "name": "token7",
+              "type": "address",
+              "internalType": "address"
+            },
+            {
+              "name": "token8",
+              "type": "address",
+              "internalType": "address"
+            },
+            {
+              "name": "token9",
+              "type": "address",
+              "internalType": "address"
+            },
+            {
+              "name": "airdrop",
+              "type": "address",
+              "internalType": "address"
+            },
+            {
+              "name": "engine",
+              "type": "address",
+              "internalType": "address"
+            },
+            {
+              "name": "team",
+              "type": "address",
+              "internalType": "address"
+            },
+            {
+              "name": "community",
+              "type": "address",
+              "internalType": "address"
+            },
+            {
+              "name": "manager",
+              "type": "address",
+              "internalType": "address"
+            }
+          ]
+        }
+      ],
+      "initcodeBytesIncludingArguments": 8472,
+      "initcodeHeadroomBytes": 40680,
+      "nonpayableConstructor": true,
+      "creationCodeHash": "0x760124910e20d8f4c5ebef19a9255cf08022696ea7a5ad244fe49718c2e29972",
+      "artifactSha256": "0fe3c0e25b58b11c601242ad0234458e6373b503fbf16d54d1db694186bc4d51",
+      "functionSelectors": {
+        "SCALE()": "eced5526",
+        "TOKEN_COUNT()": "fc7f562a",
+        "claimEth(address)": "228f3845",
+        "claimToken(address,uint8,uint256)": "d5c0edd5",
+        "claimTokens(address)": "df8de3e7",
+        "configurationHash()": "183ccffa",
+        "eligibleSupply(uint8)": "988a4e20",
+        "emergencyFinalize(uint16,uint256,uint64)": "38373e94",
+        "escrowBacking(uint8)": "5bdacc94",
+        "expireFinalClaims()": "70ae9b12",
+        "finalizeMigration(uint8,uint64)": "a32eae6d",
+        "hook()": "7f5a7c7b",
+        "previewAccount(address)": "69a5ed3b",
+        "recordElimination(uint8,uint16,uint256,uint64)": "3fd60f82",
+        "reservedEth()": "31b4163a"
+      },
+      "forbiddenFunctionsFound": []
+    },
+    {
+      "contract": "MugiIMDBuybacks",
+      "role": "descendant",
+      "instances": 1,
+      "runtimeBytes": 4994,
+      "runtimeHeadroomBytes": 19582,
+      "rawCreationBytes": 5176,
+      "constructorStaticWords": 1,
+      "constructorInputs": [
+        {
+          "name": "hook_",
+          "type": "address",
+          "internalType": "address"
+        }
+      ],
+      "initcodeBytesIncludingArguments": 5208,
+      "initcodeHeadroomBytes": 43944,
+      "nonpayableConstructor": true,
+      "creationCodeHash": "0xd28b70f3e210fbfba146a35d71511e7cda24fcc1f4c6a21bbffdb3f639b0b0ab",
+      "artifactSha256": "3d5012b915970229c6e727e4bc1ffffa8a0a1c95c124465b0d417828f782c7fe",
+      "functionSelectors": {
+        "account(uint64,uint8,uint256)": "0b8bde16",
+        "approve((uint64,uint64,uint64,uint256[10]),address,bytes)": "1d1d6536",
+        "authorize(uint64,uint8,uint256)": "6c4bb715",
+        "create(uint64,uint256,uint16)": "6d972c39",
+        "hash((uint64,uint64,uint64,uint256[10]))": "6304c4b5",
+        "hook()": "7f5a7c7b",
+        "roundBudget(uint64)": "f64d425e"
+      },
+      "forbiddenFunctionsFound": []
+    },
+    {
+      "contract": "MugiIMDPriceOracle",
+      "role": "descendant",
+      "instances": 1,
+      "runtimeBytes": 3744,
+      "runtimeHeadroomBytes": 20832,
+      "rawCreationBytes": 3897,
+      "constructorStaticWords": 1,
+      "constructorInputs": [
+        {
+          "name": "hook_",
+          "type": "address",
+          "internalType": "address"
+        }
+      ],
+      "initcodeBytesIncludingArguments": 3929,
+      "initcodeHeadroomBytes": 45223,
+      "nonpayableConstructor": true,
+      "creationCodeHash": "0xdde63a87f2f8339d1506084172a3979c8dc308a87a2488c7eb59e3a20a8609df",
+      "artifactSha256": "00e0f7a955ab42094e8f8670a2e8722a1686ff44da28acbe9b80f5c7e733b94d",
+      "functionSelectors": {
+        "CAPACITY()": "427fbf5a",
+        "LP_FEE()": "5e3f2727",
+        "MAX_SPOT_DEVIATION_TICKS()": "89b87e49",
+        "MIN_HISTORY()": "39b2b13b",
+        "MIN_SAMPLE_INTERVAL()": "c434414d",
+        "SLIPPAGE_BPS()": "77f8bb6d",
+        "buybackTwap(uint8)": "95cbd11d",
+        "consult(uint8)": "0e325d88",
+        "hook()": "7f5a7c7b",
+        "observationCount(uint8)": "e53a4f9e",
+        "quoteMinimum(uint8,uint256,int24)": "de714af2",
+        "update(uint8,int24)": "ed299628"
+      },
+      "forbiddenFunctionsFound": []
+    },
+    {
+      "contract": "MugiIMDV4Engine",
+      "role": "descendant",
+      "instances": 1,
+      "runtimeBytes": 12036,
+      "runtimeHeadroomBytes": 12540,
+      "rawCreationBytes": 12384,
+      "constructorStaticWords": 2,
+      "constructorInputs": [
+        {
+          "name": "hook_",
+          "type": "address",
+          "internalType": "address"
+        },
+        {
+          "name": "manager_",
+          "type": "address",
+          "internalType": "contract IPoolManager"
+        }
+      ],
+      "initcodeBytesIncludingArguments": 12448,
+      "initcodeHeadroomBytes": 36704,
+      "nonpayableConstructor": true,
+      "creationCodeHash": "0xaad106006eee81995b6405485e6c1eab5de9e222e7d3bb8c74d28523ef7fab02",
+      "artifactSha256": "3998cfa9f1fa7ac18b85254612ba2d81b56ad5cb4a05face0b99587139dbce58",
+      "functionSelectors": {
+        "addLiquidity(uint8,uint128,uint256,uint256)": "bb6a0b98",
+        "afterSwapFee((bool,int256,uint160),int256)": "353e255c",
+        "beforeSwapFee((bool,int256,uint160))": "21027d4f",
+        "buy(uint8,uint256,uint256,uint160)": "c04e9bce",
+        "collectFees(uint8)": "e9ae21ea",
+        "crewForPool((address,address,uint24,int24,address))": "b22dce2b",
+        "getPoolState(uint8)": "cb367edf",
+        "hook()": "7f5a7c7b",
+        "manager()": "481c6a75",
+        "poolId(uint8)": "49a7b69a",
+        "poolKey(uint8)": "4833b19a",
+        "poolState(uint8)": "cdec28ff",
+        "positionLiquidity(uint8)": "97eb4efb",
+        "quoteLiquidityForEth(uint8,uint256)": "c2ed18a9",
+        "registerInitialPool(uint8,address,uint256,uint256)": "8b81823b",
+        "registerPool(uint8,address,uint24,int24,uint160)": "ebaf19ae",
+        "removeLiquidity(uint8,uint256,uint256)": "50140be5",
+        "unlockCallback(bytes)": "91dd7346"
+      },
+      "forbiddenFunctionsFound": []
+    },
+    {
+      "contract": "MugiCrewToken",
+      "role": "inherited base token; not separately deployed",
+      "instances": 0,
+      "runtimeBytes": 3309,
+      "runtimeHeadroomBytes": 21267,
+      "rawCreationBytes": 5770,
+      "constructorStaticWords": 3,
+      "constructorInputs": [
+        {
+          "name": "characterId_",
+          "type": "uint8",
+          "internalType": "uint8"
+        },
+        {
+          "name": "hook_",
+          "type": "address",
+          "internalType": "address"
+        },
+        {
+          "name": "initialSupply_",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "initcodeBytesIncludingArguments": 5866,
+      "initcodeHeadroomBytes": 43286,
+      "nonpayableConstructor": true,
+      "creationCodeHash": "0x19917df3673fb3b3cb0fce8e2eee220047ca47caf8d4d2bf4bad637ae381476a",
+      "artifactSha256": "c5953884e63c8f8d5f1eb79cb4c0ad533cc68759e5ab6e0350ed8e734f619f40",
+      "functionSelectors": {
+        "allowance(address,address)": "dd62ed3e",
+        "approve(address,uint256)": "095ea7b3",
+        "balanceBefore(address,uint64)": "8373f92d",
+        "balanceOf(address)": "70a08231",
+        "burn(uint256)": "42966c68",
+        "characterId()": "a07a3550",
+        "crewId()": "71d3a4b9",
+        "decimals()": "313ce567",
+        "hook()": "7f5a7c7b",
+        "initialSupply()": "378dc3dc",
+        "name()": "06fdde03",
+        "reserveCap()": "2223a5da",
+        "reserveFor(uint256)": "6542ed86",
+        "symbol()": "95d89b41",
+        "totalSupply()": "18160ddd",
+        "totalSupplyBefore(uint64)": "f9670283",
+        "transfer(address,uint256)": "a9059cbb",
+        "transferFrom(address,address,uint256)": "23b872dd"
+      },
+      "forbiddenFunctionsFound": []
+    }
+  ],
+  "remainingDisclosures": [
+    "19 descendants require five owner creation transactions after four manifest factory creations; applications have final constructor bindings.",
+    "Constructor premint reserve is not circulating supply; deterministic reserve releases remain part of V1 economics.",
+    "Official-pool lifecycle gates remain, but crew ERC20 holder transfers have no lifecycle freeze or owner pause.",
+    "Hook poolManager.mint creates Uniswap ERC6909 native-fee claims, not additional crew ERC20 supply.",
+    "Owner seeding, prelaunch abort refund, ownership transfer, and verifier request pin/revoke remain disclosed authority. V2 handoff is permissionless to the constructor-pinned receiver, with a fixed community fallback after 30 days.",
+    "This report performs no network reads, public deployment, payment, explorer source verification or IMD admission."
+  ]
+}

@@ -1,0 +1,300 @@
+diff --git a/src/imd/MugiIMDGameHook.sol b/src/imd/MugiIMDGameHook.sol
+index 9997465..fda8ce1 100644
+--- a/src/imd/MugiIMDGameHook.sol
++++ b/src/imd/MugiIMDGameHook.sol
+@@ -130,7 +130,8 @@ contract MugiIMDGameHook {
+     constructor(Configuration memory c) {
+         if (c.owner == address(0) || c.team == address(0) || c.community == address(0)
+             || c.v2MigrationTarget == address(0) || c.community == c.owner || c.community == c.team
+-            || c.manager == address(0) || c.ledger == address(0) || c.engine == address(0)
++            || c.v2MigrationTarget == c.owner || c.v2MigrationTarget == c.team
++            || c.v2MigrationTarget == c.community || c.manager == address(0) || c.ledger == address(0) || c.engine == address(0)
+             || c.budgets == address(0) || c.prices == address(0) || c.randomnessProvider == address(0)
+             || c.airdrop == address(0) || c.crewFactory == address(0)
+             || c.initialSupply < 1000 || c.initialSupply > 1e36
+@@ -161,8 +162,10 @@ contract MugiIMDGameHook {
+     receive() external payable {}
+ 
+     /// @notice A replacement wallet must accept before any owner privilege moves.
++    /// The immutable community treasury and V2 receiver can never become owner.
+     function transferOwnership(address newOwner) external onlyOwner {
+-        if (newOwner == address(0) || newOwner == owner || newOwner == communityTreasury) revert InvalidConfiguration();
++        if (newOwner == address(0) || newOwner == owner || newOwner == communityTreasury
++            || newOwner == v2MigrationTarget) revert InvalidConfiguration();
+         pendingOwner = newOwner;
+         emit OwnershipTransferStarted(owner, newOwner);
+     }
+diff --git a/test/imd/MugiTerminalConfiguration.t.sol b/test/imd/MugiTerminalConfiguration.t.sol
+index 9b75800..1aafd18 100644
+--- a/test/imd/MugiTerminalConfiguration.t.sol
++++ b/test/imd/MugiTerminalConfiguration.t.sol
+@@ -25,6 +25,41 @@ contract MugiTerminalConfigurationTest is MugiIMDDeploymentFixture {
+     function testTeamCannotBeCommunityDestination() public {
+         MugiIMDGameHook.Configuration memory c = _hookConfiguration(); c.community = TEAM; _reject(c);
+     }
++    // Follow-up finding 71d0d1a9: the V2 receiver pin must be gated like the
++    // community treasury, so no owner, team or community address can be the
++    // permissionless finale handoff destination.
++    function testOwnerCannotBeV2Receiver() public {
++        MugiIMDGameHook.Configuration memory c = _hookConfiguration(); c.v2MigrationTarget = OWNER; _reject(c);
++    }
++    function testTeamCannotBeV2Receiver() public {
++        MugiIMDGameHook.Configuration memory c = _hookConfiguration(); c.v2MigrationTarget = TEAM; _reject(c);
++    }
++    function testCommunityCannotBeV2Receiver() public {
++        MugiIMDGameHook.Configuration memory c = _hookConfiguration(); c.v2MigrationTarget = COMMUNITY; _reject(c);
++    }
++    function testV2ReceiverCannotBecomeOwnerEvenAfterOwnershipTransfer() public {
++        MugiIMDGameHook game = _deployGraph();
++        address receiver = game.v2MigrationTarget();
++        assertEq(receiver, address(this));
++        vm.prank(OWNER);
++        vm.expectRevert(MugiIMDGameHook.InvalidConfiguration.selector);
++        game.transferOwnership(receiver);
++        assertEq(game.pendingOwner(), address(0));
++        address replacement = address(0xB0B);
++        vm.prank(OWNER);
++        game.transferOwnership(replacement);
++        vm.prank(replacement);
++        game.acceptOwnership();
++        assertEq(game.owner(), replacement);
++        vm.prank(replacement);
++        vm.expectRevert(MugiIMDGameHook.InvalidConfiguration.selector);
++        game.transferOwnership(receiver);
++        vm.prank(replacement);
++        vm.expectRevert(MugiIMDGameHook.InvalidConfiguration.selector);
++        game.transferOwnership(COMMUNITY);
++        assertEq(game.pendingOwner(), address(0));
++        assertEq(game.owner(), replacement);
++    }
+     function testNonzeroFutureV2ContractCanBePinnedBeforeItsDeployment() public {
+         MugiIMDGameHook.Configuration memory c = _hookConfiguration(); c.v2MigrationTarget = address(0xABC123);
+         assertEq(c.v2MigrationTarget.code.length, 0);
+diff --git a/test/imd/MugiV1IMDDeploymentFactory.t.sol b/test/imd/MugiV1IMDDeploymentFactory.t.sol
+index 087db73..4163f7a 100644
+--- a/test/imd/MugiV1IMDDeploymentFactory.t.sol
++++ b/test/imd/MugiV1IMDDeploymentFactory.t.sol
+@@ -11,6 +11,28 @@ import {MugiV1IMDDeploymentFactory} from "../../src/imd/MugiV1IMDDeploymentFacto
+ import {MugiVRFAdapter} from "../../src/game/MugiVRFAdapter.sol";
+ import {MugiIMDLedger} from "../../src/imd/modules/MugiIMDLedger.sol";
+ 
++interface IOwnedFactory {
++    function owner() external view returns (address);
++}
++
++/// @dev Test-only meter. Deploys raw initcode through CREATE2 in one call and
++/// measures the gas inside the EVM, including initcode execution and the
++/// 200 gas/byte runtime code deposit. It is never part of the launch.
++contract RawCreationMeter {
++    function create(bytes[] calldata codes) external returns (address[] memory created, uint256 gasUsed) {
++        created = new address[](codes.length);
++        uint256 start = gasleft();
++        for (uint256 i; i < codes.length; ++i) {
++            bytes memory code = codes[i];
++            address deployed;
++            assembly ("memory-safe") { deployed := create2(0, add(code, 0x20), mload(code), i) }
++            require(deployed != address(0) && deployed.code.length != 0, "creation failed");
++            created[i] = deployed;
++        }
++        gasUsed = start - gasleft();
++    }
++}
++
+ contract MugiV1IMDDeploymentFactoryTest is MugiIMDDeploymentFixture {
+     function setUp() public {
+         vm.warp(1 days);
+@@ -41,14 +63,29 @@ contract MugiV1IMDDeploymentFactoryTest is MugiIMDDeploymentFixture {
+     }
+ 
+     function testFactoryCreationBatchHasConservativeGasHeadroom() public {
+-        uint256 start = gasleft();
+-        _newFactories();
+-        uint256 execution = start - gasleft();
+-        uint256 calldataBytes = type(MugiIMDCrewFactory).creationCode.length
+-            + type(MugiIMDAccountingFactory).creationCode.length + type(MugiIMDEngineFactory).creationCode.length
+-            + type(MugiV1IMDDeploymentFactory).creationCode.length + 4 * 32 + 4096;
+-        uint256 runtimeBytes = address(crewFactory).code.length + address(factory).code.length
+-            + address(accountingFactory).code.length + address(engineFactory).code.length;
++        // Raw CREATE2 of the exact initcode in manifest order, as the IMD project
++        // factory deploys it. Forge 1.8 does not meter `new` of a project artifact
++        // from a test-directory contract, so gasleft() around _newFactories()
++        // under-reports creation gas there; raw CREATE2 is metered normally.
++        RawCreationMeter meter = new RawCreationMeter();
++        bytes memory ownerArgument = abi.encode(OWNER);
++        bytes[] memory codes = new bytes[](4);
++        codes[0] = abi.encodePacked(type(MugiIMDCrewFactory).creationCode, ownerArgument);
++        codes[1] = abi.encodePacked(type(MugiV1IMDDeploymentFactory).creationCode, ownerArgument);
++        codes[2] = abi.encodePacked(type(MugiIMDAccountingFactory).creationCode, ownerArgument);
++        codes[3] = abi.encodePacked(type(MugiIMDEngineFactory).creationCode, ownerArgument);
++        (address[] memory created, uint256 execution) = meter.create(codes);
++        uint256 calldataBytes = 4 * 32 + 4096;
++        uint256 runtimeBytes;
++        for (uint256 i; i < 4; ++i) {
++            calldataBytes += codes[i].length;
++            runtimeBytes += created[i].code.length;
++            assertEq(IOwnedFactory(created[i]).owner(), OWNER);
++        }
++        assertEq(created[0].code, address(crewFactory).code);
++        assertEq(created[1].code, address(factory).code);
++        assertEq(created[2].code, address(accountingFactory).code);
++        assertEq(created[3].code, address(engineFactory).code);
+         // This is a local creation bound with explicit ABI/registry allowance;
+         // the exact IMD launchContracts transaction also needs RPC simulation.
+         _assertTransactionGas("Four factory creation bound", execution, calldataBytes, runtimeBytes, 4, 1_000_000);
+diff --git a/test/imd/lifecycle/MugiAdversarial.t.sol b/test/imd/lifecycle/MugiAdversarial.t.sol
+index a9a0655..fc7e62a 100644
+--- a/test/imd/lifecycle/MugiAdversarial.t.sol
++++ b/test/imd/lifecycle/MugiAdversarial.t.sol
+@@ -165,7 +165,7 @@ contract MugiAdversarialTest is MugiGameTestBase {
+         (, uint256 aliceReward,) = game.previewAccount(ALICE);
+         assertEq(aliceReward, 0, "final LP principal does not create a holder reward");
+         uint256 pendingMigration = address(game).balance - game.teamEth() - game.reservedPlayerEth();
+-        game.migrateToV2(address(this));
++        game.migrateToV2(_migrationTarget());
+         assertEq(migratedEth, pendingMigration);
+         _assertSolvent();
+     }
+diff --git a/test/imd/lifecycle/MugiEconomics.t.sol b/test/imd/lifecycle/MugiEconomics.t.sol
+index 302f8d6..3c5223d 100644
+--- a/test/imd/lifecycle/MugiEconomics.t.sol
++++ b/test/imd/lifecycle/MugiEconomics.t.sol
+@@ -102,7 +102,7 @@ contract MugiEconomicsTest is MugiGameTestBase {
+         assertEq(game.eligibleSupply(9), finalEligible);
+         assertEq(game.reservedPlayerEth(), oldReserved);
+         assertEq(migratedEth, 0);
+-        game.migrateToV2(address(this));
++        game.migrateToV2(_migrationTarget());
+         assertEq(migratedEth, finalEth);
+         assertEq(MugiCrewToken(crew[9]).balanceOf(address(game)), finalBacking);
+         assertEq(migratedTokens, finalInventory);
+@@ -145,7 +145,7 @@ contract MugiEconomicsTest is MugiGameTestBase {
+             - teamReserve;
+         vm.warp(game.nextCutoff());
+         game.finalize();
+-        game.migrateToV2(address(this));
++        game.migrateToV2(_migrationTarget());
+         assertEq(migratedEth, expectedMigration);
+         assertEq(game.reservedPlayerEth(), 0);
+         assertEq(game.teamEth(), teamReserve);
+@@ -186,7 +186,7 @@ contract MugiEconomicsTest is MugiGameTestBase {
+         }
+         uint256 finalInventory = MugiCrewToken(crew[9]).balanceOf(address(game)) - backing;
+         assertGt(finalInventory, 0);
+-        game.migrateToV2(address(this));
++        game.migrateToV2(_migrationTarget());
+         assertEq(migratedTokens, finalInventory);
+         assertEq(MugiCrewToken(crew[9]).balanceOf(address(game)), backing);
+         for (uint256 a; a < actors.length; ++a) {
+@@ -295,7 +295,7 @@ contract MugiEconomicsTest is MugiGameTestBase {
+         }
+         game.withdrawTeamFees();
+         _assertBuckets(0);
+-        game.migrateToV2(address(this));
++        game.migrateToV2(_migrationTarget());
+         assertEq(migratedEth, pendingMigrationEth);
+         assertEq(migratedTokens, pendingMigrationTokens[survivor]);
+         pendingMigrationEth = 0;
+diff --git a/test/imd/lifecycle/MugiGameHook.t.sol b/test/imd/lifecycle/MugiGameHook.t.sol
+index 5b388cf..7d1a542 100644
+--- a/test/imd/lifecycle/MugiGameHook.t.sol
++++ b/test/imd/lifecycle/MugiGameHook.t.sol
+@@ -38,6 +38,18 @@ contract GameRandomnessMock {
+     }
+ }
+ 
++/// @dev Test-only V2 receiver with its own address. It forwards the survivor tokens
++/// and finale ETH to the test contract's recorder so existing assertions on
++/// `address(this)` balances and the migrated* counters remain valid.
++contract ForwardingV2Receiver {
++    address payable private immutable sink;
++    constructor(address sink_) { sink = payable(sink_); }
++    function receiveV1Finale(uint8 survivor, address survivorToken, uint256 survivorTokens) external payable {
++        require(MugiCrewToken(survivorToken).transfer(sink, survivorTokens), "forward failed");
++        MugiGameTestBase(sink).receiveV1Finale{value: msg.value}(survivor, survivorToken, survivorTokens);
++    }
++}
++
+ abstract contract MugiGameTestBase is Test {
+     uint256 internal constant SUPPLY = 1_000_000 ether;
+     uint256 internal constant POOL_ETH = 100 ether;
+@@ -60,6 +72,7 @@ abstract contract MugiGameTestBase is Test {
+     address internal migratedToken;
+     uint256 internal migratedEth;
+     uint256 internal migratedTokens;
++    ForwardingV2Receiver internal v2Receiver;
+ 
+     receive() external payable {}
+ 
+@@ -125,7 +138,13 @@ abstract contract MugiGameTestBase is Test {
+         deployed = MugiGameHook(payable(hookAddress));
+     }
+ 
+-    function _migrationTarget() internal view virtual returns (address) { return address(this); }
++    /// @dev The hook constructor rejects a V2 receiver aliased to the owner (this
++    /// test contract), team or community. The default receiver is therefore a
++    /// distinct contract that forwards the handoff to this contract's recorder.
++    function _migrationTarget() internal virtual returns (address) {
++        if (address(v2Receiver) == address(0)) v2Receiver = new ForwardingV2Receiver(address(this));
++        return address(v2Receiver);
++    }
+ 
+     function _makeRandomness(address) internal virtual returns (address) {
+         randomness = new GameRandomnessMock();
+@@ -385,7 +404,7 @@ contract MugiGameHookTest is MugiGameTestBase {
+         assertEq(earlyFinal, 0, "final V1 holder reward is migrated to V2");
+         assertEq(lateTotal, latePrior, "final V1 holder reward is migrated to V2");
+         assertEq(migratedEth, 0, "final assets wait for the manual V2 binding step");
+-        game.migrateToV2(address(this));
++        game.migrateToV2(_migrationTarget());
+         assertEq(migratedSurvivor, 9);
+         assertEq(migratedToken, crew[9]);
+         assertGt(migratedEth, 0);
+diff --git a/test/imd/lifecycle/MugiGameHookMainnetFork.t.sol b/test/imd/lifecycle/MugiGameHookMainnetFork.t.sol
+index 4291218..8a27c60 100644
+--- a/test/imd/lifecycle/MugiGameHookMainnetFork.t.sol
++++ b/test/imd/lifecycle/MugiGameHookMainnetFork.t.sol
+@@ -78,7 +78,7 @@ contract MugiGameHookMainnetForkTest is MugiGameTestBase {
+         assertGt(pendingEth, 0);
+         assertGt(pendingTokens, 0);
+         assertEq(migratedEth, 0, "finalization waits for the owner to bind V2");
+-        game.migrateToV2(address(this));
++        game.migrateToV2(_migrationTarget());
+         assertEq(migratedEth, pendingEth);
+         assertEq(migratedTokens, pendingTokens);
+         assertEq(MugiCrewToken(crew[9]).balanceOf(address(game)), backing);
+diff --git a/test/imd/lifecycle/MugiStallRecovery.t.sol b/test/imd/lifecycle/MugiStallRecovery.t.sol
+index 4bb5606..985cb8d 100644
+--- a/test/imd/lifecycle/MugiStallRecovery.t.sol
++++ b/test/imd/lifecycle/MugiStallRecovery.t.sol
+@@ -84,7 +84,7 @@ contract MugiStallRecoveryTest is MugiGameTestBase {
+         vm.expectRevert(MugiGameHook.InvalidState.selector);
+         game.finalize();
+         vm.expectRevert(MugiGameHook.InvalidState.selector);
+-        game.migrateToV2(address(this));
++        game.migrateToV2(_migrationTarget());
+         vm.expectRevert(MugiGameHook.InvalidState.selector);
+         game.recoverStalledRandomness(10);
+         _assertSolvent();
+@@ -250,18 +250,19 @@ contract MugiFinaleRightsTest is MugiGameTestBase {
+         (uint256[10] memory beforeFinal,,) = game.previewAccount(ALICE);
+         vm.warp(game.nextCutoff());
+         game.finalize();
+-        assertEq(game.v2MigrationTarget(), address(this));
++        assertEq(game.v2MigrationTarget(), _migrationTarget());
++        assertTrue(_migrationTarget() != address(this), "V2 receiver is distinct from the owner");
+         uint256 reservedTokens = game.escrowBacking(9);
+         assertGt(reservedTokens, 0);
+         (uint256[10] memory afterFinal,,) = game.previewAccount(ALICE);
+         assertEq(afterFinal[9], beforeFinal[9]);
+         vm.expectRevert(MugiGameHook.InvalidState.selector);
+         game.migrateToV2(address(router));
+-        game.migrateToV2(address(this));
++        game.migrateToV2(_migrationTarget());
+         assertTrue(game.migrated());
+         assertEq(MugiCrewToken(crew[9]).balanceOf(address(game)), reservedTokens);
+         vm.expectRevert(MugiGameHook.InvalidState.selector);
+-        game.migrateToV2(address(this));
++        game.migrateToV2(_migrationTarget());
+         uint256 aliceBefore = MugiCrewToken(crew[9]).balanceOf(ALICE);
+         vm.prank(ALICE);
+         game.claimTokens();

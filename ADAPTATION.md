@@ -60,6 +60,33 @@ This is protocol-fund continuity, not an automatic 1:1 holder-token conversion.
 V2 chooses and funds its own token supply. The current actual V2 receiver allows
 V1 funds to arrive before its token is configured; activation is separate.
 
+## Follow-up repair of the R2 source (from commit `b553ba7`)
+
+The independent follow-up review of commit `b553ba7` (the R2 source that
+addressed audit `573ea9d5…54f2`) reported two low findings and three
+informational notes. Both low findings reproduced locally and are fixed here
+with regression tests. Nothing else in `src/` changed; game, claims, reserve,
+immutable-V2 and community rules are untouched. This adapted source is **not**
+identical to `b553ba7`; the diff is limited to the files below.
+
+| Finding | File | Change | Why |
+| --- | --- | --- | --- |
+| `71d0d1a9…` (low): V2 receiver could alias owner, team or community | `src/imd/MugiIMDGameHook.sol` constructor | Reverts `InvalidConfiguration` when `v2MigrationTarget` equals `owner`, `team` or `community`, mirroring the existing community gate. | Reproduced: a hook with `v2MigrationTarget == team/owner/community` deployed and `migrateToV2` would route unreserved finale assets to that wallet permissionlessly, the owner-selected-sink outcome the prior audit asked to remove. |
+| `71d0d1a9…` (low), ownership-transfer corollary | `src/imd/MugiIMDGameHook.sol` `transferOwnership` | Also rejects the immutable `v2MigrationTarget` as a new owner, as it already rejected `communityTreasury`. | Keeps the owner/receiver separation after any ownership transfer, matching the "including after ownership transfer" rule for the community treasury. |
+| Regression tests for both | `test/imd/MugiTerminalConfiguration.t.sol` | `testOwnerCannotBeV2Receiver`, `testTeamCannotBeV2Receiver`, `testCommunityCannotBeV2Receiver`, `testV2ReceiverCannotBecomeOwnerEvenAfterOwnershipTransfer`. | Each variant from the finding's reproduction now fails hook creation; the ownership path is covered before and after a transfer. |
+| Fixture consequence | `test/imd/lifecycle/MugiGameHook.t.sol` and the lifecycle tests calling `migrateToV2` | The lifecycle base fixture used the test contract as both owner and V2 receiver, which the new gate rejects. The default receiver is now `ForwardingV2Receiver`, a test-only contract with its own address that forwards tokens and ETH to the test contract's recorder. Call sites use `_migrationTarget()`; one assertion now checks the receiver differs from the owner. | Test-only change; every existing balance and counter assertion is unchanged and passes. |
+| `f223bf7c…` (low): gas-headroom test fails on current Foundry | `test/imd/MugiV1IMDDeploymentFactory.t.sol` | `testFactoryCreationBatchHasConservativeGasHeadroom` now deploys the four factories' exact initcode in manifest order through raw `CREATE2` in a test-only `RawCreationMeter` contract and meters gas inside the EVM. | Reproduced on Forge 1.8.3: `gasleft()` around `new` of a project artifact from a test-directory contract is not metered (26,942 gas for four creations), so the meter aborted. Raw CREATE2 is metered normally, is what the IMD project factory actually executes, and the result (12,296,955 gas, bound 14,824,595 < 16,777,216) agrees with the earlier local Anvil receipt of 14,187,986 gas. |
+| Disclosure | `hook-constructor.json`, `docs/IMD_CONSTRUCTOR_DEPLOYMENT.md`, `README.md` | State the new constructor gate and ownership rule; point to the new evidence. | Keeps the child plan and deployment guide consistent with the code. |
+
+Informational findings `8a8c8bda…` (deadline fallback routes to the operator's
+second wallet), `2f6d28eb…` (hook creation blocked on the unresolved V2
+receiver) and `a4181dd5…` (coverage statement) required no code change and are
+restated as trust assumptions in the next section: the community wallet and the
+future V2 receiver are operator-controlled addresses, not independent custody,
+and the four-factory launch deploys no child and activates nothing.
+
+Validation for this repair is under `docs/validation/v2-alias-gate/`.
+
 ## Explicit remaining trust and admission limits
 
 - The constructor-pinned V2 receiver and community treasury must be reviewed

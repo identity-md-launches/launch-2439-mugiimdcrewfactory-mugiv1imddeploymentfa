@@ -102,7 +102,7 @@ contract MugiEconomicsTest is MugiGameTestBase {
         assertEq(game.eligibleSupply(9), finalEligible);
         assertEq(game.reservedPlayerEth(), oldReserved);
         assertEq(migratedEth, 0);
-        game.migrateToV2(address(this));
+        game.migrateToV2(_migrationTarget());
         assertEq(migratedEth, finalEth);
         assertEq(MugiCrewToken(crew[9]).balanceOf(address(game)), finalBacking);
         assertEq(migratedTokens, finalInventory);
@@ -145,7 +145,7 @@ contract MugiEconomicsTest is MugiGameTestBase {
             - teamReserve;
         vm.warp(game.nextCutoff());
         game.finalize();
-        game.migrateToV2(address(this));
+        game.migrateToV2(_migrationTarget());
         assertEq(migratedEth, expectedMigration);
         assertEq(game.reservedPlayerEth(), 0);
         assertEq(game.teamEth(), teamReserve);
@@ -186,7 +186,7 @@ contract MugiEconomicsTest is MugiGameTestBase {
         }
         uint256 finalInventory = MugiCrewToken(crew[9]).balanceOf(address(game)) - backing;
         assertGt(finalInventory, 0);
-        game.migrateToV2(address(this));
+        game.migrateToV2(_migrationTarget());
         assertEq(migratedTokens, finalInventory);
         assertEq(MugiCrewToken(crew[9]).balanceOf(address(game)), backing);
         for (uint256 a; a < actors.length; ++a) {
@@ -295,7 +295,7 @@ contract MugiEconomicsTest is MugiGameTestBase {
         }
         game.withdrawTeamFees();
         _assertBuckets(0);
-        game.migrateToV2(address(this));
+        game.migrateToV2(_migrationTarget());
         assertEq(migratedEth, pendingMigrationEth);
         assertEq(migratedTokens, pendingMigrationTokens[survivor]);
         pendingMigrationEth = 0;

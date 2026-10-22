@@ -11,6 +11,28 @@ import {MugiV1IMDDeploymentFactory} from "../../src/imd/MugiV1IMDDeploymentFacto
 import {MugiVRFAdapter} from "../../src/game/MugiVRFAdapter.sol";
 import {MugiIMDLedger} from "../../src/imd/modules/MugiIMDLedger.sol";
 
+interface IOwnedFactory {
+    function owner() external view returns (address);
+}
+
+/// @dev Test-only meter. Deploys raw initcode through CREATE2 in one call and
+/// measures the gas inside the EVM, including initcode execution and the
+/// 200 gas/byte runtime code deposit. It is never part of the launch.
+contract RawCreationMeter {
+    function create(bytes[] calldata codes) external returns (address[] memory created, uint256 gasUsed) {
+        created = new address[](codes.length);
+        uint256 start = gasleft();
+        for (uint256 i; i < codes.length; ++i) {
+            bytes memory code = codes[i];
+            address deployed;
+            assembly ("memory-safe") { deployed := create2(0, add(code, 0x20), mload(code), i) }
+            require(deployed != address(0) && deployed.code.length != 0, "creation failed");
+            created[i] = deployed;
+        }
+        gasUsed = start - gasleft();
+    }
+}
+
 contract MugiV1IMDDeploymentFactoryTest is MugiIMDDeploymentFixture {
     function setUp() public {
         vm.warp(1 days);
@@ -41,14 +63,29 @@ contract MugiV1IMDDeploymentFactoryTest is MugiIMDDeploymentFixture {
     }
 
     function testFactoryCreationBatchHasConservativeGasHeadroom() public {
-        uint256 start = gasleft();
-        _newFactories();
-        uint256 execution = start - gasleft();
-        uint256 calldataBytes = type(MugiIMDCrewFactory).creationCode.length
-            + type(MugiIMDAccountingFactory).creationCode.length + type(MugiIMDEngineFactory).creationCode.length
-            + type(MugiV1IMDDeploymentFactory).creationCode.length + 4 * 32 + 4096;
-        uint256 runtimeBytes = address(crewFactory).code.length + address(factory).code.length
-            + address(accountingFactory).code.length + address(engineFactory).code.length;
+        // Raw CREATE2 of the exact initcode in manifest order, as the IMD project
+        // factory deploys it. Forge 1.8 does not meter `new` of a project artifact
+        // from a test-directory contract, so gasleft() around _newFactories()
+        // under-reports creation gas there; raw CREATE2 is metered normally.
+        RawCreationMeter meter = new RawCreationMeter();
+        bytes memory ownerArgument = abi.encode(OWNER);
+        bytes[] memory codes = new bytes[](4);
+        codes[0] = abi.encodePacked(type(MugiIMDCrewFactory).creationCode, ownerArgument);
+        codes[1] = abi.encodePacked(type(MugiV1IMDDeploymentFactory).creationCode, ownerArgument);
+        codes[2] = abi.encodePacked(type(MugiIMDAccountingFactory).creationCode, ownerArgument);
+        codes[3] = abi.encodePacked(type(MugiIMDEngineFactory).creationCode, ownerArgument);
+        (address[] memory created, uint256 execution) = meter.create(codes);
+        uint256 calldataBytes = 4 * 32 + 4096;
+        uint256 runtimeBytes;
+        for (uint256 i; i < 4; ++i) {
+            calldataBytes += codes[i].length;
+            runtimeBytes += created[i].code.length;
+            assertEq(IOwnedFactory(created[i]).owner(), OWNER);
+        }
+        assertEq(created[0].code, address(crewFactory).code);
+        assertEq(created[1].code, address(factory).code);
+        assertEq(created[2].code, address(accountingFactory).code);
+        assertEq(created[3].code, address(engineFactory).code);
         // This is a local creation bound with explicit ABI/registry allowance;
         // the exact IMD launchContracts transaction also needs RPC simulation.
         _assertTransactionGas("Four factory creation bound", execution, calldataBytes, runtimeBytes, 4, 1_000_000);

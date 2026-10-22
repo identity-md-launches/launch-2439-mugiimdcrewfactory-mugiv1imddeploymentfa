@@ -22,8 +22,13 @@ Fork suites require `MUGI_IMD_MAINNET_FORK_RPC` and optionally
 not a public deployment. Compiler settings and dependencies remain unchanged:
 Solidity 0.8.26, Cancun, optimizer 200, via IR, bytecode hash none.
 
-Final validation: **152 V1 tests and one separate actual-V2 integration test passed**.
-See [the exact evidence and reproduction commands](docs/validation/compatible/VALIDATION.md).
+Current validation (follow-up repair of `b553ba7`): **153 V1 tests passed, 0 failed, 2 mainnet-fork
+tests skipped without an RPC** on Forge 1.8.3 with the verifier fuzz seed. See
+[docs/validation/v2-alias-gate/VALIDATION.md](docs/validation/v2-alias-gate/VALIDATION.md).
+The earlier R2 evidence (152 tests including the fork suites on Foundry 1.5.1, plus one
+separate actual-V2 integration test) is under
+[docs/validation/compatible/VALIDATION.md](docs/validation/compatible/VALIDATION.md) and
+applies to commit `b553ba7`; the hook constructor gate and the gas meter changed since.
 
 Source admission remains pending. This R2 revision addresses the three blocking medium findings from paid job `0c8421fb-4f6d-4650-8c90-d9fd7d7a79c5` against commit `9901dc71030df5818e4b307df1c5c43506346c12`; see [the findings response](docs/IMD_COMPATIBLE_R2_RESPONSE.md). Earlier paid job
 `6a953f2f-d28d-46cc-91a4-f348efed5c10` reviewed rejected source

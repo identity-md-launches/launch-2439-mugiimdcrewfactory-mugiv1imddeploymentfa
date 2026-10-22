@@ -38,6 +38,18 @@ contract GameRandomnessMock {
     }
 }
 
+/// @dev Test-only V2 receiver with its own address. It forwards the survivor tokens
+/// and finale ETH to the test contract's recorder so existing assertions on
+/// `address(this)` balances and the migrated* counters remain valid.
+contract ForwardingV2Receiver {
+    address payable private immutable sink;
+    constructor(address sink_) { sink = payable(sink_); }
+    function receiveV1Finale(uint8 survivor, address survivorToken, uint256 survivorTokens) external payable {
+        require(MugiCrewToken(survivorToken).transfer(sink, survivorTokens), "forward failed");
+        MugiGameTestBase(sink).receiveV1Finale{value: msg.value}(survivor, survivorToken, survivorTokens);
+    }
+}
+
 abstract contract MugiGameTestBase is Test {
     uint256 internal constant SUPPLY = 1_000_000 ether;
     uint256 internal constant POOL_ETH = 100 ether;
@@ -60,6 +72,7 @@ abstract contract MugiGameTestBase is Test {
     address internal migratedToken;
     uint256 internal migratedEth;
     uint256 internal migratedTokens;
+    ForwardingV2Receiver internal v2Receiver;
 
     receive() external payable {}
 
@@ -125,7 +138,13 @@ abstract contract MugiGameTestBase is Test {
         deployed = MugiGameHook(payable(hookAddress));
     }
 
-    function _migrationTarget() internal view virtual returns (address) { return address(this); }
+    /// @dev The hook constructor rejects a V2 receiver aliased to the owner (this
+    /// test contract), team or community. The default receiver is therefore a
+    /// distinct contract that forwards the handoff to this contract's recorder.
+    function _migrationTarget() internal virtual returns (address) {
+        if (address(v2Receiver) == address(0)) v2Receiver = new ForwardingV2Receiver(address(this));
+        return address(v2Receiver);
+    }
 
     function _makeRandomness(address) internal virtual returns (address) {
         randomness = new GameRandomnessMock();
@@ -385,7 +404,7 @@ contract MugiGameHookTest is MugiGameTestBase {
         assertEq(earlyFinal, 0, "final V1 holder reward is migrated to V2");
         assertEq(lateTotal, latePrior, "final V1 holder reward is migrated to V2");
         assertEq(migratedEth, 0, "final assets wait for the manual V2 binding step");
-        game.migrateToV2(address(this));
+        game.migrateToV2(_migrationTarget());
         assertEq(migratedSurvivor, 9);
         assertEq(migratedToken, crew[9]);
         assertGt(migratedEth, 0);

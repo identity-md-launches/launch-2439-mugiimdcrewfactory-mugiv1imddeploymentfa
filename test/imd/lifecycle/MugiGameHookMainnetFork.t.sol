@@ -78,7 +78,7 @@ contract MugiGameHookMainnetForkTest is MugiGameTestBase {
         assertGt(pendingEth, 0);
         assertGt(pendingTokens, 0);
         assertEq(migratedEth, 0, "finalization waits for the owner to bind V2");
-        game.migrateToV2(address(this));
+        game.migrateToV2(_migrationTarget());
         assertEq(migratedEth, pendingEth);
         assertEq(migratedTokens, pendingTokens);
         assertEq(MugiCrewToken(crew[9]).balanceOf(address(game)), backing);

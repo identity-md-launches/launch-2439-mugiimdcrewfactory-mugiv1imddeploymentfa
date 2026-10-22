@@ -1,0 +1,1749 @@
+[
+  {
+    "suite": "test/imd/MugiIMDCrewToken.t.sol:MugiIMDCrewTokenTest",
+    "test": "testBurnHistoryTracksMultipleTimestampsAndCoalescesSameTimestamp()",
+    "status": "Success",
+    "reason": null,
+    "kind": {
+      "Unit": {
+        "gas": 441690
+      }
+    }
+  },
+  {
+    "suite": "test/imd/MugiIMDCrewToken.t.sol:MugiIMDCrewTokenTest",
+    "test": "testConstructorAcceptsPredeterminedUndeployedHook()",
+    "status": "Success",
+    "reason": null,
+    "kind": {
+      "Unit": {
+        "gas": 16336
+      }
+    }
+  },
+  {
+    "suite": "test/imd/MugiIMDCrewToken.t.sol:MugiIMDCrewTokenTest",
+    "test": "testConstructorCreatesWholeFiniteReserveAndNoEarlierHistory()",
+    "status": "Success",
+    "reason": null,
+    "kind": {
+      "Unit": {
+        "gas": 100182
+      }
+    }
+  },
+  {
+    "suite": "test/imd/MugiIMDCrewToken.t.sol:MugiIMDCrewTokenTest",
+    "test": "testFuzzFiniteReserveCoversMaxReinforcementsAndConversions(uint256,uint256)",
+    "status": "Success",
+    "reason": null,
+    "kind": {
+      "Fuzz": {
+        "first_case": {
+          "gas": 76489,
+          "stipend": 21824
+        },
+        "runs": 256,
+        "mean_gas": 54383,
+        "median_gas": 54214,
+        "failed_corpus_replays": 0
+      }
+    }
+  },
+  {
+    "suite": "test/imd/MugiIMDCrewToken.t.sol:MugiIMDCrewTokenTest",
+    "test": "testFuzzHistoricalReadsMatchRecordedBeforeStates(uint256)",
+    "status": "Success",
+    "reason": null,
+    "kind": {
+      "Fuzz": {
+        "first_case": {
+          "gas": 3688457,
+          "stipend": 21336
+        },
+        "runs": 256,
+        "mean_gas": 3525674,
+        "median_gas": 3643842,
+        "failed_corpus_replays": 0
+      }
+    }
+  },
+  {
+    "suite": "test/imd/MugiIMDCrewToken.t.sol:MugiIMDCrewTokenTest",
+    "test": "testInfiniteAllowanceAndFailedTransferPreserveHistory()",
+    "status": "Success",
+    "reason": null,
+    "kind": {
+      "Unit": {
+        "gas": 351050
+      }
+    }
+  },
+  {
+    "suite": "test/imd/MugiIMDCrewToken.t.sol:MugiIMDCrewTokenTest",
+    "test": "testInvalidConstructorConfigurationRejects()",
+    "status": "Success",
+    "reason": null,
+    "kind": {
+      "Unit": {
+        "gas": 4632
+      }
+    }
+  },
+  {
+    "suite": "test/imd/MugiIMDCrewToken.t.sol:MugiIMDCrewTokenTest",
+    "test": "testRejectsZeroTransferAndApprovalDestinations()",
+    "status": "Success",
+    "reason": null,
+    "kind": {
+      "Unit": {
+        "gas": 53819
+      }
+    }
+  },
+  {
+    "suite": "test/imd/MugiIMDCrewToken.t.sol:MugiIMDCrewTokenTest",
+    "test": "testRemovedMintInitializerAndArbitraryBurnSelectorsAreUnavailable()",
+    "status": "Success",
+    "reason": null,
+    "kind": {
+      "Unit": {
+        "gas": 219912
+      }
+    }
+  },
+  {
+    "suite": "test/imd/MugiIMDCrewToken.t.sol:MugiIMDCrewTokenTest",
+    "test": "testReserveHolderHasNoAuthorityOverOtherBalances()",
+    "status": "Success",
+    "reason": null,
+    "kind": {
+      "Unit": {
+        "gas": 223787
+      }
+    }
+  },
+  {
+    "suite": "test/imd/MugiIMDCrewToken.t.sol:MugiIMDCrewTokenTest",
+    "test": "testSameTimestampGenesisAndTransfersUseEndOfTimestampBalance()",
+    "status": "Success",
+    "reason": null,
+    "kind": {
+      "Unit": {
+        "gas": 313272
+      }
+    }
+  },
+  {
+    "suite": "test/imd/MugiIMDCrewToken.t.sol:MugiIMDCrewTokenTest",
+    "test": "testStaticConstructorPreservesAllCanonicalCrewNamesAndSymbols()",
+    "status": "Success",
+    "reason": null,
+    "kind": {
+      "Unit": {
+        "gas": 276675
+      }
+    }
+  },
+  {
+    "suite": "test/imd/MugiIMDCrewToken.t.sol:MugiIMDCrewTokenTest",
+    "test": "testStrictCutoffExcludesEveryExactCutoffTransferAndBurn()",
+    "status": "Success",
+    "reason": null,
+    "kind": {
+      "Unit": {
+        "gas": 568341
+      }
+    }
+  },
+  {
+    "suite": "test/imd/MugiIMDCrewToken.t.sol:MugiIMDCrewTokenTest",
+    "test": "testTransferFromCheckpointsBothWalletsAndFiniteAllowance()",
+    "status": "Success",
+    "reason": null,
+    "kind": {
+      "Unit": {
+        "gas": 367855
+      }
+    }
+  },
+  {
+    "suite": "test/imd/MugiIMDCrewToken.t.sol:MugiIMDCrewTokenTest",
+    "test": "testTransfersAndBurnDoNotCallRevertingOrBrokenHook()",
+    "status": "Success",
+    "reason": null,
+    "kind": {
+      "Unit": {
+        "gas": 539864
+      }
+    }
+  },
+  {
+    "suite": "test/imd/MugiIMDCrewToken.t.sol:MugiIMDCrewTokenTest",
+    "test": "testZeroAndSelfTransfersDoNotChangeHistoricalOwnership()",
+    "status": "Success",
+    "reason": null,
+    "kind": {
+      "Unit": {
+        "gas": 248761
+      }
+    }
+  },
+  {
+    "suite": "test/imd/MugiIMDProjectFactoryFork.t.sol:MugiIMDProjectFactoryForkTest",
+    "test": "testMainnetFactoryRecordsFourEntriesThenConstructorCompleteGraphSeedsTenPools()",
+    "status": "Skipped",
+    "reason": null,
+    "kind": {
+      "Unit": {
+        "gas": 0
+      }
+    }
+  },
+  {
+    "suite": "test/imd/MugiTerminalConfiguration.t.sol:MugiTerminalConfigurationTest",
+    "test": "testCommunityCannotBeV2Receiver()",
+    "status": "Success",
+    "reason": null,
+    "kind": {
+      "Unit": {
+        "gas": 69634447
+      }
+    }
+  },
+  {
+    "suite": "test/imd/MugiTerminalConfiguration.t.sol:MugiTerminalConfigurationTest",
+    "test": "testNonzeroFutureV2ContractCanBePinnedBeforeItsDeployment()",
+    "status": "Success",
+    "reason": null,
+    "kind": {
+      "Unit": {
+        "gas": 73917688
+      }
+    }
+  },
+  {
+    "suite": "test/imd/MugiTerminalConfiguration.t.sol:MugiTerminalConfigurationTest",
+    "test": "testOwnerCannotBeCommunityDestination()",
+    "status": "Success",
+    "reason": null,
+    "kind": {
+      "Unit": {
+        "gas": 230121597
+      }
+    }
+  },
+  {
+    "suite": "test/imd/MugiTerminalConfiguration.t.sol:MugiTerminalConfigurationTest",
+    "test": "testOwnerCannotBeV2Receiver()",
+    "status": "Success",
+    "reason": null,
+    "kind": {
+      "Unit": {
+        "gas": 20272703
+      }
+    }
+  },
+  {
+    "suite": "test/imd/MugiTerminalConfiguration.t.sol:MugiTerminalConfigurationTest",
+    "test": "testTeamCannotBeCommunityDestination()",
+    "status": "Success",
+    "reason": null,
+    "kind": {
+      "Unit": {
+        "gas": 74924950
+      }
+    }
+  },
+  {
+    "suite": "test/imd/MugiTerminalConfiguration.t.sol:MugiTerminalConfigurationTest",
+    "test": "testTeamCannotBeV2Receiver()",
+    "status": "Success",
+    "reason": null,
+    "kind": {
+      "Unit": {
+        "gas": 126831952
+      }
+    }
+  },
+  {
+    "suite": "test/imd/MugiTerminalConfiguration.t.sol:MugiTerminalConfigurationTest",
+    "test": "testV2ReceiverCannotBecomeOwnerEvenAfterOwnershipTransfer()",
+    "status": "Success",
+    "reason": null,
+    "kind": {
+      "Unit": {
+        "gas": 52267373
+      }
+    }
+  },
+  {
+    "suite": "test/imd/MugiTerminalConfiguration.t.sol:MugiTerminalConfigurationTest",
+    "test": "testZeroV2ReceiverCannotCreateHook()",
+    "status": "Success",
+    "reason": null,
+    "kind": {
+      "Unit": {
+        "gas": 42409306
+      }
+    }
+  },
+  {
+    "suite": "test/imd/MugiV1IMDDeploymentFactory.t.sol:MugiV1IMDDeploymentFactoryTest",
+    "test": "testCompleteConstructorGraphSeedsAllPoolsAndLaunchesWithoutInitializers()",
+    "status": "Success",
+    "reason": null,
+    "kind": {
+      "Unit": {
+        "gas": 60779609
+      }
+    }
+  },
+  {
+    "suite": "test/imd/MugiV1IMDDeploymentFactory.t.sol:MugiV1IMDDeploymentFactoryTest",
+    "test": "testConstructorFailureRollsBackModuleCommitmentAndCreateNonces()",
+    "status": "Success",
+    "reason": null,
+    "kind": {
+      "Unit": {
+        "gas": 30756234
+      }
+    }
+  },
+  {
+    "suite": "test/imd/MugiV1IMDDeploymentFactory.t.sol:MugiV1IMDDeploymentFactoryTest",
+    "test": "testEvenCommittedArbitraryCreationCodeCannotReplacePinnedImplementation()",
+    "status": "Success",
+    "reason": null,
+    "kind": {
+      "Unit": {
+        "gas": 80690058
+      }
+    }
+  },
+  {
+    "suite": "test/imd/MugiV1IMDDeploymentFactory.t.sol:MugiV1IMDDeploymentFactoryTest",
+    "test": "testEveryDescendantCreationCallFitsSeparateTransactionGasCap()",
+    "status": "Success",
+    "reason": null,
+    "kind": {
+      "Unit": {
+        "gas": 51069839
+      }
+    }
+  },
+  {
+    "suite": "test/imd/MugiV1IMDDeploymentFactory.t.sol:MugiV1IMDDeploymentFactoryTest",
+    "test": "testFactoriesPinSourceHaveNoChildrenAtConstructionAndFitEvmLimits()",
+    "status": "Success",
+    "reason": null,
+    "kind": {
+      "Unit": {
+        "gas": 232359
+      }
+    }
+  },
+  {
+    "suite": "test/imd/MugiV1IMDDeploymentFactory.t.sol:MugiV1IMDDeploymentFactoryTest",
+    "test": "testFactoryCreationBatchHasConservativeGasHeadroom()",
+    "status": "Success",
+    "reason": null,
+    "kind": {
+      "Unit": {
+        "gas": 14359475
+      }
+    }
+  },
+  {
+    "suite": "test/imd/MugiV1IMDDeploymentFactory.t.sol:MugiV1IMDDeploymentFactoryTest",
+    "test": "testHookConfigurationCannotSubstituteFactoryModuleOrOwner()",
+    "status": "Success",
+    "reason": null,
+    "kind": {
+      "Unit": {
+        "gas": 106592148
+      }
+    }
+  },
+  {
+    "suite": "test/imd/MugiV1IMDDeploymentFactory.t.sol:MugiV1IMDDeploymentFactoryTest",
+    "test": "testHookRequiresAllFourOwnModulesAndCrewCreationAndExactCommittedCode()",
+    "status": "Success",
+    "reason": null,
+    "kind": {
+      "Unit": {
+        "gas": 39968369
+      }
+    }
+  },
+  {
+    "suite": "test/imd/MugiV1IMDDeploymentFactory.t.sol:MugiV1IMDDeploymentFactoryTest",
+    "test": "testMismatchedLedgerExclusionBindingRejectsFirstPoolSeed()",
+    "status": "Success",
+    "reason": null,
+    "kind": {
+      "Unit": {
+        "gas": 50978506
+      }
+    }
+  },
+  {
+    "suite": "test/imd/MugiV1IMDDeploymentFactory.t.sol:MugiV1IMDDeploymentFactoryTest",
+    "test": "testMismatchedLedgerTokenBindingRejectsFirstPoolSeed()",
+    "status": "Success",
+    "reason": null,
+    "kind": {
+      "Unit": {
+        "gas": 50978440
+      }
+    }
+  },
+  {
+    "suite": "test/imd/MugiV1IMDDeploymentFactory.t.sol:MugiV1IMDDeploymentFactoryTest",
+    "test": "testSingleSeasonCommitmentsCannotBeReplacedAfterSuccess()",
+    "status": "Success",
+    "reason": null,
+    "kind": {
+      "Unit": {
+        "gas": 52890937
+      }
+    }
+  },
+  {
+    "suite": "test/imd/MugiV1IMDDeploymentFactory.t.sol:MugiV1IMDDeploymentFactoryTest",
+    "test": "testUnauthorizedCallersCannotConsumeAnyPredictedAddress()",
+    "status": "Success",
+    "reason": null,
+    "kind": {
+      "Unit": {
+        "gas": 26387216
+      }
+    }
+  },
+  {
+    "suite": "test/imd/lifecycle/MugiAdversarial.t.sol:MugiAdversarialTest",
+    "test": "testEthRecipientCannotReenterAndWithdrawItsRewardTwice()",
+    "status": "Success",
+    "reason": null,
+    "kind": {
+      "Unit": {
+        "gas": 6126106
+      }
+    }
+  },
+  {
+    "suite": "test/imd/lifecycle/MugiAdversarial.t.sol:MugiAdversarialTest",
+    "test": "testFinalizationMigrationPreservesEarlierRewardsWithoutPauseCapability()",
+    "status": "Success",
+    "reason": null,
+    "kind": {
+      "Unit": {
+        "gas": 29336743
+      }
+    }
+  },
+  {
+    "suite": "test/imd/lifecycle/MugiAdversarial.t.sol:MugiAdversarialTest",
+    "test": "testPartialMaterializationAndFrequentEthClaimsMatchDeferredRewardsExactly()",
+    "status": "Success",
+    "reason": null,
+    "kind": {
+      "Unit": {
+        "gas": 38111477
+      }
+    }
+  },
+  {
+    "suite": "test/imd/lifecycle/MugiAdversarial.t.sol:MugiAdversarialTest",
+    "test": "testPoolManagerClaimCustodyIsExplicitlyExcludedFromHolderRights()",
+    "status": "Success",
+    "reason": null,
+    "kind": {
+      "Unit": {
+        "gas": 6072434
+      }
+    }
+  },
+  {
+    "suite": "test/imd/lifecycle/MugiAdversarial.t.sol:MugiAdversarialTest",
+    "test": "testSpotManipulationCannotForceTreasuryBuyAtManipulatedPrice()",
+    "status": "Success",
+    "reason": null,
+    "kind": {
+      "Unit": {
+        "gas": 1355546
+      }
+    }
+  },
+  {
+    "suite": "test/imd/lifecycle/MugiAdversarial.t.sol:MugiAdversarialTest",
+    "test": "testSubLiquidityUnitRemainderDoesNotPermanentlyFreezeSettlement()",
+    "status": "Success",
+    "reason": null,
+    "kind": {
+      "Unit": {
+        "gas": 20116549
+      }
+    }
+  },
+  {
+    "suite": "test/imd/lifecycle/MugiAdversarial.t.sol:MugiAdversarialTest",
+    "test": "testThirdPartyPoolManagerUnlockCannotRecordCutoffOrWithdrawClaims()",
+    "status": "Success",
+    "reason": null,
+    "kind": {
+      "Unit": {
+        "gas": 5622474
+      }
+    }
+  },
+  {
+    "suite": "test/imd/lifecycle/MugiAdversarial.t.sol:MugiAdversarialTest",
+    "test": "testUnregisteredCallerCannotForgeTokenBalanceAccounting()",
+    "status": "Success",
+    "reason": null,
+    "kind": {
+      "Unit": {
+        "gas": 170667
+      }
+    }
+  },
+  {
+    "suite": "test/imd/lifecycle/MugiCompatibilityHandoff.t.sol:MugiCompatibilityHandoffTest",
+    "test": "testCommunityTreasuryCannotBecomeOwner()",
+    "status": "Success",
+    "reason": null,
+    "kind": {
+      "Unit": {
+        "gas": 156387
+      }
+    }
+  },
+  {
+    "suite": "test/imd/lifecycle/MugiCompatibilityHandoff.t.sol:MugiCompatibilityHandoffTest",
+    "test": "testCutoffAndKnownLoserTransfersDoNotMoveOrDuplicateConversion()",
+    "status": "Success",
+    "reason": null,
+    "kind": {
+      "Unit": {
+        "gas": 7347756
+      }
+    }
+  },
+  {
+    "suite": "test/imd/lifecycle/MugiCompatibilityHandoff.t.sol:MugiCompatibilityHandoffTest",
+    "test": "testExpiryBeforeFinaleFallbackCannotEraseMigrationDeadline()",
+    "status": "Success",
+    "reason": null,
+    "kind": {
+      "Unit": {
+        "gas": 32027455
+      }
+    }
+  },
+  {
+    "suite": "test/imd/lifecycle/MugiCompatibilityHandoff.t.sol:MugiCompatibilityHandoffTest",
+    "test": "testFinaleFallbackHasHardDeadlineAndPreservesReservedAssets()",
+    "status": "Success",
+    "reason": null,
+    "kind": {
+      "Unit": {
+        "gas": 33163720
+      }
+    }
+  },
+  {
+    "suite": "test/imd/lifecycle/MugiCompatibilityHandoff.t.sol:MugiCompatibilityHandoffTest",
+    "test": "testRejectingCommunityRollsBackFallbackAndAllowsPermissionlessRetry()",
+    "status": "Success",
+    "reason": null,
+    "kind": {
+      "Unit": {
+        "gas": 32119000
+      }
+    }
+  },
+  {
+    "suite": "test/imd/lifecycle/MugiCompatibilityHandoff.t.sol:MugiCompatibilityHandoffTest",
+    "test": "testRejectingV2ReceiverRollsBackAllTransfersAndAllowsRetry()",
+    "status": "Success",
+    "reason": null,
+    "kind": {
+      "Unit": {
+        "gas": 32078099
+      }
+    }
+  },
+  {
+    "suite": "test/imd/lifecycle/MugiCompatibilityHandoff.t.sol:MugiCompatibilityHandoffTest",
+    "test": "testV2HandoffPreservesPlayerEthAndTokensAndRetiresUnusedSupply()",
+    "status": "Success",
+    "reason": null,
+    "kind": {
+      "Unit": {
+        "gas": 33996865
+      }
+    }
+  },
+  {
+    "suite": "test/imd/lifecycle/MugiEconomics.t.sol:MugiEconomicsTest",
+    "test": "testBuybackTwapExposesRealHistoryAndRejectsInvalidCrew()",
+    "status": "Success",
+    "reason": null,
+    "kind": {
+      "Unit": {
+        "gas": 563451
+      }
+    }
+  },
+  {
+    "suite": "test/imd/lifecycle/MugiEconomics.t.sol:MugiEconomicsTest",
+    "test": "testEliminationPaysBookedAndUncollectedTokenFeesBeforeRetirement()",
+    "status": "Success",
+    "reason": null,
+    "kind": {
+      "Unit": {
+        "gas": 7024281
+      }
+    }
+  },
+  {
+    "suite": "test/imd/lifecycle/MugiEconomics.t.sol:MugiEconomicsTest",
+    "test": "testFinalePaysBookedAndExitTokenFeesWithoutConsumingEscrowOrEthRewards()",
+    "status": "Success",
+    "reason": null,
+    "kind": {
+      "Unit": {
+        "gas": 30536531
+      }
+    }
+  },
+  {
+    "suite": "test/imd/lifecycle/MugiEconomics.t.sol:MugiEconomicsTest",
+    "test": "testFuzzSeasonReconcilesEveryBucketAcrossTradesTransfersAndClaims(uint256)",
+    "status": "Success",
+    "reason": null,
+    "kind": {
+      "Fuzz": {
+        "first_case": {
+          "gas": 214499580,
+          "stipend": 21336
+        },
+        "runs": 256,
+        "mean_gas": 220523131,
+        "median_gas": 219589189,
+        "failed_corpus_replays": 0
+      }
+    }
+  },
+  {
+    "suite": "test/imd/lifecycle/MugiEconomics.t.sol:MugiEconomicsTest",
+    "test": "testTerminalMigrationPreservesFinalTokenClaimsAndEarlierEthClaims()",
+    "status": "Success",
+    "reason": null,
+    "kind": {
+      "Unit": {
+        "gas": 35895439
+      }
+    }
+  },
+  {
+    "suite": "test/imd/lifecycle/MugiEconomics.t.sol:MugiEconomicsTest",
+    "test": "testZeroEligibleFinaleMigratesToV2AndPreservesTeamEth()",
+    "status": "Success",
+    "reason": null,
+    "kind": {
+      "Unit": {
+        "gas": 26936260
+      }
+    }
+  },
+  {
+    "suite": "test/imd/lifecycle/MugiGameHook.t.sol:MugiGameHookTest",
+    "test": "testAirdropRemainderRetiresAfterDeadline()",
+    "status": "Success",
+    "reason": null,
+    "kind": {
+      "Unit": {
+        "gas": 934470
+      }
+    }
+  },
+  {
+    "suite": "test/imd/lifecycle/MugiGameHook.t.sol:MugiGameHookTest",
+    "test": "testAllFourSwapModesFundSeparateEthBudgets()",
+    "status": "Success",
+    "reason": null,
+    "kind": {
+      "Unit": {
+        "gas": 1625388
+      }
+    }
+  },
+  {
+    "suite": "test/imd/lifecycle/MugiGameHook.t.sol:MugiGameHookTest",
+    "test": "testDustBuybacksCannotConsumeRoundOrOwnCadence()",
+    "status": "Success",
+    "reason": null,
+    "kind": {
+      "Unit": {
+        "gas": 6507663
+      }
+    }
+  },
+  {
+    "suite": "test/imd/lifecycle/MugiGameHook.t.sol:MugiGameHookTest",
+    "test": "testEarnedEthRemainsClaimableDuringNextRandomnessWait()",
+    "status": "Success",
+    "reason": null,
+    "kind": {
+      "Unit": {
+        "gas": 9364448
+      }
+    }
+  },
+  {
+    "suite": "test/imd/lifecycle/MugiGameHook.t.sol:MugiGameHookTest",
+    "test": "testExternalPositionsAndAlternativeKeysUsingHookAreRejected()",
+    "status": "Success",
+    "reason": null,
+    "kind": {
+      "Unit": {
+        "gas": 1294260
+      }
+    }
+  },
+  {
+    "suite": "test/imd/lifecycle/MugiGameHook.t.sol:MugiGameHookTest",
+    "test": "testFinalClaimsExpireToCommunityAfterThirtyDays()",
+    "status": "Success",
+    "reason": null,
+    "kind": {
+      "Unit": {
+        "gas": 27109034
+      }
+    }
+  },
+  {
+    "suite": "test/imd/lifecycle/MugiGameHook.t.sol:MugiGameHookTest",
+    "test": "testFixedCutoffAllowsTransfersButClosesOfficialRoundAndMaterialization()",
+    "status": "Success",
+    "reason": null,
+    "kind": {
+      "Unit": {
+        "gas": 439097
+      }
+    }
+  },
+  {
+    "suite": "test/imd/lifecycle/MugiGameHook.t.sol:MugiGameHookTest",
+    "test": "testFullNineRoundsAndFinaleEarlyAndLateClaimsAgree()",
+    "status": "Success",
+    "reason": null,
+    "kind": {
+      "Unit": {
+        "gas": 42779645
+      }
+    }
+  },
+  {
+    "suite": "test/imd/lifecycle/MugiGameHook.t.sol:MugiGameHookTest",
+    "test": "testInitialAllocationAndAirdropClaimsAreTracked()",
+    "status": "Success",
+    "reason": null,
+    "kind": {
+      "Unit": {
+        "gas": 376097
+      }
+    }
+  },
+  {
+    "suite": "test/imd/lifecycle/MugiGameHook.t.sol:MugiGameHookTest",
+    "test": "testModularHookFitsMainnetRuntimeLimit()",
+    "status": "Success",
+    "reason": null,
+    "kind": {
+      "Unit": {
+        "gas": 5070
+      }
+    }
+  },
+  {
+    "suite": "test/imd/lifecycle/MugiGameHook.t.sol:MugiGameHookTest",
+    "test": "testOwnBuybackUsesTwapAndBurnsActualPurchasedTokens()",
+    "status": "Success",
+    "reason": null,
+    "kind": {
+      "Unit": {
+        "gas": 1373149
+      }
+    }
+  },
+  {
+    "suite": "test/imd/lifecycle/MugiGameHook.t.sol:MugiGameHookTest",
+    "test": "testOwnerCanAbortOnlyBeforeLaunchAndRecoverSeededEth()",
+    "status": "Success",
+    "reason": null,
+    "kind": {
+      "Unit": {
+        "gas": 11162742
+      }
+    }
+  },
+  {
+    "suite": "test/imd/lifecycle/MugiGameHook.t.sol:MugiGameHookTest",
+    "test": "testPreviouslyEarnedEthDoesNotFollowTransferredSurvivorTokens()",
+    "status": "Success",
+    "reason": null,
+    "kind": {
+      "Unit": {
+        "gas": 5632587
+      }
+    }
+  },
+  {
+    "suite": "test/imd/lifecycle/MugiGameHook.t.sol:MugiGameHookTest",
+    "test": "testRandomnessOnlyRecordsOutcomeAndRejectsDuplicates()",
+    "status": "Success",
+    "reason": null,
+    "kind": {
+      "Unit": {
+        "gas": 341859
+      }
+    }
+  },
+  {
+    "suite": "test/imd/lifecycle/MugiGameHook.t.sol:MugiGameHookTest",
+    "test": "testRoundBuybackFallbackSpendsOnlyAuthorizedBudgetAndBurns()",
+    "status": "Success",
+    "reason": null,
+    "kind": {
+      "Unit": {
+        "gas": 5523412
+      }
+    }
+  },
+  {
+    "suite": "test/imd/lifecycle/MugiGameHook.t.sol:MugiGameHookTest",
+    "test": "testStagedSettlementRewardsPreexistingSurvivors()",
+    "status": "Success",
+    "reason": null,
+    "kind": {
+      "Unit": {
+        "gas": 7744778
+      }
+    }
+  },
+  {
+    "suite": "test/imd/lifecycle/MugiGameHook.t.sol:MugiGameHookTest",
+    "test": "testTeamFeeCollectionCannotWithdrawPrincipalOrPlayerRewards()",
+    "status": "Success",
+    "reason": null,
+    "kind": {
+      "Unit": {
+        "gas": 1568622
+      }
+    }
+  },
+  {
+    "suite": "test/imd/lifecycle/MugiGameHook.t.sol:MugiGameHookTest",
+    "test": "testWalletTransferHasNoTaxAndPreservesSupplyAccounting()",
+    "status": "Success",
+    "reason": null,
+    "kind": {
+      "Unit": {
+        "gas": 241731
+      }
+    }
+  },
+  {
+    "suite": "test/imd/lifecycle/MugiGameHookMainnetFork.t.sol:MugiGameHookMainnetForkTest",
+    "test": "setUp()",
+    "status": "Skipped",
+    "reason": "skipped",
+    "kind": {
+      "Unit": {
+        "gas": 0
+      }
+    }
+  },
+  {
+    "suite": "test/imd/lifecycle/MugiStallRecovery.t.sol:MugiFinaleRightsTest",
+    "test": "testCommittedV2TargetAndOneShotMigrationReserveUnclaimedTokens()",
+    "status": "Success",
+    "reason": null,
+    "kind": {
+      "Unit": {
+        "gas": 28784071
+      }
+    }
+  },
+  {
+    "suite": "test/imd/lifecycle/MugiStallRecovery.t.sol:MugiFinaleRightsTest",
+    "test": "testNoPauseCanDelayTheFixedRandomnessCutoff()",
+    "status": "Success",
+    "reason": null,
+    "kind": {
+      "Unit": {
+        "gas": 127670
+      }
+    }
+  },
+  {
+    "suite": "test/imd/lifecycle/MugiStallRecovery.t.sol:MugiFinaleRightsTest",
+    "test": "testOwnerCannotInstallPauseAndTradingStillWorks()",
+    "status": "Success",
+    "reason": null,
+    "kind": {
+      "Unit": {
+        "gas": 476715
+      }
+    }
+  },
+  {
+    "suite": "test/imd/lifecycle/MugiStallRecovery.t.sol:MugiStallRecoveryTest",
+    "test": "testConfiguredCallbackBudgetStoresTimeAndDeliversValidZeroWord()",
+    "status": "Success",
+    "reason": null,
+    "kind": {
+      "Unit": {
+        "gas": 271185
+      }
+    }
+  },
+  {
+    "suite": "test/imd/lifecycle/MugiStallRecovery.t.sol:MugiStallRecoveryTest",
+    "test": "testLastSecondRequestDoesNotExtendDeadline()",
+    "status": "Success",
+    "reason": null,
+    "kind": {
+      "Unit": {
+        "gas": 3194604
+      }
+    }
+  },
+  {
+    "suite": "test/imd/lifecycle/MugiStallRecovery.t.sol:MugiStallRecoveryTest",
+    "test": "testLateWordDuringPartialRecoveryCannotChooseLoserOrReopenPools()",
+    "status": "Success",
+    "reason": null,
+    "kind": {
+      "Unit": {
+        "gas": 3339541
+      }
+    }
+  },
+  {
+    "suite": "test/imd/lifecycle/MugiStallRecovery.t.sol:MugiStallRecoveryTest",
+    "test": "testNobodyRequestsBeforeDeadlineCannotStartFreshRandomnessAfterwards()",
+    "status": "Success",
+    "reason": null,
+    "kind": {
+      "Unit": {
+        "gas": 2977542
+      }
+    }
+  },
+  {
+    "suite": "test/imd/lifecycle/MugiStallRecovery.t.sol:MugiStallRecoveryTest",
+    "test": "testOnTimeStoredWordCannotBeDiscardedAfterDeferredDelivery()",
+    "status": "Success",
+    "reason": null,
+    "kind": {
+      "Unit": {
+        "gas": 4101806
+      }
+    }
+  },
+  {
+    "suite": "test/imd/lifecycle/MugiStallRecovery.t.sol:MugiStallRecoveryTest",
+    "test": "testRecoveryPreservesPriorRewardsAndVirtualHolderRights()",
+    "status": "Success",
+    "reason": null,
+    "kind": {
+      "Unit": {
+        "gas": 11140650
+      }
+    }
+  },
+  {
+    "suite": "test/imd/lifecycle/MugiStallRecovery.t.sol:MugiStallRecoveryTest",
+    "test": "testRejectedRequestInitiationCannotFreezeSeasonOrExtendCutoffDeadline()",
+    "status": "Success",
+    "reason": null,
+    "kind": {
+      "Unit": {
+        "gas": 3325913
+      }
+    }
+  },
+  {
+    "suite": "test/imd/lifecycle/MugiStallRecovery.t.sol:MugiStallRecoveryTest",
+    "test": "testSilentRequestRecoversTenPoolsWithoutRerollOrOwnerCashout()",
+    "status": "Success",
+    "reason": null,
+    "kind": {
+      "Unit": {
+        "gas": 4877130
+      }
+    }
+  },
+  {
+    "suite": "test/imd/lifecycle/MugiStallRecovery.t.sol:MugiStallRecoveryTest",
+    "test": "testWordFirstStoredAtDeadlineCannotReviveSeason()",
+    "status": "Success",
+    "reason": null,
+    "kind": {
+      "Unit": {
+        "gas": 3221567
+      }
+    }
+  },
+  {
+    "suite": "test/imd/lifecycle/MugiSwapRouter.t.sol:MugiSwapRouterTest",
+    "test": "testBuyAndSellRejectExpiredDeadlines()",
+    "status": "Success",
+    "reason": null,
+    "kind": {
+      "Unit": {
+        "gas": 121454
+      }
+    }
+  },
+  {
+    "suite": "test/imd/lifecycle/MugiSwapRouter.t.sol:MugiSwapRouterTest",
+    "test": "testBuyMinimumOutputFailureRevertsPaymentAndBothFeeBuckets()",
+    "status": "Success",
+    "reason": null,
+    "kind": {
+      "Unit": {
+        "gas": 449640
+      }
+    }
+  },
+  {
+    "suite": "test/imd/lifecycle/MugiSwapRouter.t.sol:MugiSwapRouterTest",
+    "test": "testBuyUsesOfficialPoolPaysBothFeesAndDeliversDirectlyToHolder()",
+    "status": "Success",
+    "reason": null,
+    "kind": {
+      "Unit": {
+        "gas": 1042642
+      }
+    }
+  },
+  {
+    "suite": "test/imd/lifecycle/MugiSwapRouter.t.sol:MugiSwapRouterTest",
+    "test": "testEthRecipientCannotReenterDuringSellSettlement()",
+    "status": "Success",
+    "reason": null,
+    "kind": {
+      "Unit": {
+        "gas": 852134
+      }
+    }
+  },
+  {
+    "suite": "test/imd/lifecycle/MugiSwapRouter.t.sol:MugiSwapRouterTest",
+    "test": "testForcedEthCannotBeWithdrawnByNextBuyerOrSeller()",
+    "status": "Success",
+    "reason": null,
+    "kind": {
+      "Unit": {
+        "gas": 620467
+      }
+    }
+  },
+  {
+    "suite": "test/imd/lifecycle/MugiSwapRouter.t.sol:MugiSwapRouterTest",
+    "test": "testFuzzNormalTradesPreserveCustodyAndChargeGameFees(uint96)",
+    "status": "Success",
+    "reason": null,
+    "kind": {
+      "Fuzz": {
+        "first_case": {
+          "gas": 1035087,
+          "stipend": 21240
+        },
+        "runs": 256,
+        "mean_gas": 1013210,
+        "median_gas": 1013847,
+        "failed_corpus_replays": 0
+      }
+    }
+  },
+  {
+    "suite": "test/imd/lifecycle/MugiSwapRouter.t.sol:MugiSwapRouterTest",
+    "test": "testOfficialRoundCutoffAndEliminationCannotBeBypassed()",
+    "status": "Success",
+    "reason": null,
+    "kind": {
+      "Unit": {
+        "gas": 5275342
+      }
+    }
+  },
+  {
+    "suite": "test/imd/lifecycle/MugiSwapRouter.t.sol:MugiSwapRouterTest",
+    "test": "testRejectingEthRecipientRollsBackWholeSale()",
+    "status": "Success",
+    "reason": null,
+    "kind": {
+      "Unit": {
+        "gas": 902672
+      }
+    }
+  },
+  {
+    "suite": "test/imd/lifecycle/MugiSwapRouter.t.sol:MugiSwapRouterTest",
+    "test": "testRejectsInvalidCrewAndUnsafeInputBounds()",
+    "status": "Success",
+    "reason": null,
+    "kind": {
+      "Unit": {
+        "gas": 262638
+      }
+    }
+  },
+  {
+    "suite": "test/imd/lifecycle/MugiSwapRouter.t.sol:MugiSwapRouterTest",
+    "test": "testSalesRequireUsersOwnApprovalAndCannotSpendAnotherWallet()",
+    "status": "Success",
+    "reason": null,
+    "kind": {
+      "Unit": {
+        "gas": 807282
+      }
+    }
+  },
+  {
+    "suite": "test/imd/lifecycle/MugiSwapRouter.t.sol:MugiSwapRouterTest",
+    "test": "testSellDebitsActualTokensAndReceivesNetEthWithNoRouterInventory()",
+    "status": "Success",
+    "reason": null,
+    "kind": {
+      "Unit": {
+        "gas": 994718
+      }
+    }
+  },
+  {
+    "suite": "test/imd/lifecycle/MugiSwapRouter.t.sol:MugiSwapRouterTest",
+    "test": "testSellMinimumOutputFailurePreservesAllowanceAndBalances()",
+    "status": "Success",
+    "reason": null,
+    "kind": {
+      "Unit": {
+        "gas": 439306
+      }
+    }
+  },
+  {
+    "suite": "test/imd/lifecycle/MugiSwapRouter.t.sol:MugiSwapRouterTest",
+    "test": "testThirdPartyManagerUnlockCannotUseRouter()",
+    "status": "Success",
+    "reason": null,
+    "kind": {
+      "Unit": {
+        "gas": 396113
+      }
+    }
+  },
+  {
+    "suite": "test/imd/lifecycle/MugiSwapRouter.t.sol:MugiSwapRouterTest",
+    "test": "testUnsolicitedCallbacksRejectedIncludingManagerWithoutPendingTrade()",
+    "status": "Success",
+    "reason": null,
+    "kind": {
+      "Unit": {
+        "gas": 71596
+      }
+    }
+  },
+  {
+    "suite": "test/imd/modules/MugiIMDEngineSecurity.t.sol:MugiIMDEngineSecurityTest",
+    "test": "testAllEconomicMutatorsRejectNonHookCaller()",
+    "status": "Success",
+    "reason": null,
+    "kind": {
+      "Unit": {
+        "gas": 150353
+      }
+    }
+  },
+  {
+    "suite": "test/imd/modules/MugiIMDEngineSecurity.t.sol:MugiIMDEngineSecurityTest",
+    "test": "testCallbackCannotBeInjectedEvenByManagerWithoutPendingUnlock()",
+    "status": "Success",
+    "reason": null,
+    "kind": {
+      "Unit": {
+        "gas": 62786
+      }
+    }
+  },
+  {
+    "suite": "test/imd/modules/MugiIMDEngineSecurity.t.sol:MugiIMDEngineSecurityTest",
+    "test": "testCounterfactualConstructorDoesNotCallDependencyAddresses()",
+    "status": "Success",
+    "reason": null,
+    "kind": {
+      "Unit": {
+        "gas": 13706
+      }
+    }
+  },
+  {
+    "suite": "test/imd/modules/MugiIMDEngineSecurity.t.sol:MugiIMDEngineSecurityTest",
+    "test": "testOnlyOwnerCanDeployPredictedEngineOnce()",
+    "status": "Success",
+    "reason": null,
+    "kind": {
+      "Unit": {
+        "gas": 6455846
+      }
+    }
+  },
+  {
+    "suite": "test/imd/modules/MugiIMDEngineSecurity.t.sol:MugiIMDEngineSecurityTest",
+    "test": "testPartialBuyPaysHookAndRefundsUnusedEth()",
+    "status": "Success",
+    "reason": null,
+    "kind": {
+      "Unit": {
+        "gas": 808775
+      }
+    }
+  },
+  {
+    "suite": "test/imd/modules/MugiIMDEngineSecurity.t.sol:MugiIMDEngineSecurityTest",
+    "test": "testRefundCallbackCannotReenterPositionOperations()",
+    "status": "Success",
+    "reason": null,
+    "kind": {
+      "Unit": {
+        "gas": 661418
+      }
+    }
+  },
+  {
+    "suite": "test/imd/modules/MugiIMDEngineSecurity.t.sol:MugiIMDEngineSecurityTest",
+    "test": "testRemovePaysHookAndLeavesNoPositionOrNewBalancesInEngine()",
+    "status": "Success",
+    "reason": null,
+    "kind": {
+      "Unit": {
+        "gas": 787517
+      }
+    }
+  },
+  {
+    "suite": "test/imd/modules/MugiIMDEngineSecurity.t.sol:MugiIMDEngineSecurityTest",
+    "test": "testSeedRefundsUnusedInputsAndPreservesPriorEngineBalances()",
+    "status": "Success",
+    "reason": null,
+    "kind": {
+      "Unit": {
+        "gas": 623887
+      }
+    }
+  },
+  {
+    "suite": "test/imd/modules/MugiIMDLedgerSeason.t.sol:MugiIMDLedgerSeasonTest",
+    "test": "testConstructorFixesAllProtocolExclusionsWithoutInitialization()",
+    "status": "Success",
+    "reason": null,
+    "kind": {
+      "Unit": {
+        "gas": 2309714
+      }
+    }
+  },
+  {
+    "suite": "test/imd/modules/MugiIMDLedgerSeason.t.sol:MugiIMDLedgerSeasonTest",
+    "test": "testConstructorRejectsZeroOrDuplicateTokensAndTokenProtocolRoleCollision()",
+    "status": "Success",
+    "reason": null,
+    "kind": {
+      "Unit": {
+        "gas": 26831
+      }
+    }
+  },
+  {
+    "suite": "test/imd/modules/MugiIMDLedgerSeason.t.sol:MugiIMDLedgerSeasonTest",
+    "test": "testConstructorWorksBeforeAnyDependencyCodeExists()",
+    "status": "Success",
+    "reason": null,
+    "kind": {
+      "Unit": {
+        "gas": 16570
+      }
+    }
+  },
+  {
+    "suite": "test/imd/modules/MugiIMDLedgerSeason.t.sol:MugiIMDLedgerSeasonTest",
+    "test": "testDuplicateTreasuryAddressesAreSubtractedOnlyOnce()",
+    "status": "Success",
+    "reason": null,
+    "kind": {
+      "Unit": {
+        "gas": 1141863
+      }
+    }
+  },
+  {
+    "suite": "test/imd/modules/MugiIMDLedgerSecurity.t.sol:MugiIMDLedgerSecurityTest",
+    "test": "testAllRemainingLedgerMutatorsRejectOutsideCaller()",
+    "status": "Success",
+    "reason": null,
+    "kind": {
+      "Unit": {
+        "gas": 171999
+      }
+    }
+  },
+  {
+    "suite": "test/imd/modules/MugiIMDLedgerSecurity.t.sol:MugiIMDLedgerSecurityTest",
+    "test": "testCutoffCannotBeFutureRepeatedOrEarlierThanPriorAccountingEvent()",
+    "status": "Success",
+    "reason": null,
+    "kind": {
+      "Unit": {
+        "gas": 4908600
+      }
+    }
+  },
+  {
+    "suite": "test/imd/modules/MugiIMDLedgerSecurity.t.sol:MugiIMDLedgerSecurityTest",
+    "test": "testExcludedProtocolInventoryCannotCaptureEliminationRewards()",
+    "status": "Success",
+    "reason": null,
+    "kind": {
+      "Unit": {
+        "gas": 4078480
+      }
+    }
+  },
+  {
+    "suite": "test/imd/modules/MugiIMDLedgerSecurity.t.sol:MugiIMDLedgerSecurityTest",
+    "test": "testMaterializationAtOrAfterProposedCutoffCannotBeReusedAsAnEarlierVirtualSnapshot()",
+    "status": "Success",
+    "reason": null,
+    "kind": {
+      "Unit": {
+        "gas": 5210809
+      }
+    }
+  },
+  {
+    "suite": "test/imd/modules/MugiIMDLedgerSecurity.t.sol:MugiIMDLedgerSecurityTest",
+    "test": "testPremintedProtocolInventoryIsExcludedWithoutAnyTokenCallback()",
+    "status": "Success",
+    "reason": null,
+    "kind": {
+      "Unit": {
+        "gas": 1336129
+      }
+    }
+  },
+  {
+    "suite": "test/imd/modules/MugiIMDLedgerSecurity.t.sol:MugiIMDLedgerSecurityTest",
+    "test": "testRemovedInitializationReclassificationAndCallbackSelectorsAreUnavailableEvenToHook()",
+    "status": "Success",
+    "reason": null,
+    "kind": {
+      "Unit": {
+        "gas": 148153
+      }
+    }
+  },
+  {
+    "suite": "test/imd/modules/MugiIMDLedgerSecurity.t.sol:MugiIMDLedgerSecurityTest",
+    "test": "testZeroTokenClaimsAndEthSynchronizationDoNotChangeVirtualSnapshotTiming()",
+    "status": "Success",
+    "reason": null,
+    "kind": {
+      "Unit": {
+        "gas": 5446112
+      }
+    }
+  },
+  {
+    "suite": "test/imd/modules/MugiIMDLedgerSnapshots.t.sol:MugiIMDLedgerSnapshotsTest",
+    "test": "testCutoffTransfersBurnsAndKnownLoserSalesCannotMovePastRewardsOrConversion()",
+    "status": "Success",
+    "reason": null,
+    "kind": {
+      "Unit": {
+        "gas": 7006991
+      }
+    }
+  },
+  {
+    "suite": "test/imd/modules/MugiIMDLedgerSnapshots.t.sol:MugiIMDLedgerSnapshotsTest",
+    "test": "testEmergencyUnwindUsesOriginalCutoffEvenAfterTransfersDuringLongRecoveryDelay()",
+    "status": "Success",
+    "reason": null,
+    "kind": {
+      "Unit": {
+        "gas": 7770266
+      }
+    }
+  },
+  {
+    "suite": "test/imd/modules/MugiIMDLedgerSnapshots.t.sol:MugiIMDLedgerSnapshotsTest",
+    "test": "testFuzzAfterCutoffTransferCannotSellOrDuplicateConversion(uint96,uint96)",
+    "status": "Success",
+    "reason": null,
+    "kind": {
+      "Fuzz": {
+        "first_case": {
+          "gas": 4085001,
+          "stipend": 21500
+        },
+        "runs": 256,
+        "mean_gas": 4060790,
+        "median_gas": 4063237,
+        "failed_corpus_replays": 0
+      }
+    }
+  },
+  {
+    "suite": "test/imd/modules/MugiIMDLedgerSnapshots.t.sol:MugiIMDLedgerSnapshotsTest",
+    "test": "testPartialMaterializationAndTransferBeforeNextCutoffNeverDoubleCountWalletAndVirtual()",
+    "status": "Success",
+    "reason": null,
+    "kind": {
+      "Unit": {
+        "gas": 9121056
+      }
+    }
+  },
+  {
+    "suite": "test/imd/modules/MugiIMDLedgerSnapshots.t.sol:MugiIMDLedgerSnapshotsTest",
+    "test": "testTransfersBeforeCutoffMoveFutureEntitlementsToTheActualCutoffOwner()",
+    "status": "Success",
+    "reason": null,
+    "kind": {
+      "Unit": {
+        "gas": 3751048
+      }
+    }
+  },
+  {
+    "suite": "test/imd/modules/MugiIMDLedgerTerminal.t.sol:MugiIMDLedgerTerminalTest",
+    "test": "testEmergencyAfterPriorEthWithdrawalExpiresOnlyRemainingMixedRights()",
+    "status": "Success",
+    "reason": null,
+    "kind": {
+      "Unit": {
+        "gas": 6872513
+      }
+    }
+  },
+  {
+    "suite": "test/imd/modules/MugiIMDLedgerTerminal.t.sol:MugiIMDLedgerTerminalTest",
+    "test": "testEmergencyExpirationCannotResurrectSyncedOrLazyClaims()",
+    "status": "Success",
+    "reason": null,
+    "kind": {
+      "Unit": {
+        "gas": 10818557
+      }
+    }
+  },
+  {
+    "suite": "test/imd/modules/MugiIMDLedgerTerminal.t.sol:MugiIMDLedgerTerminalTest",
+    "test": "testEmergencyRejectsWrongMaskAndCannotRecordAnotherTerminalOrRound()",
+    "status": "Success",
+    "reason": null,
+    "kind": {
+      "Unit": {
+        "gas": 937792
+      }
+    }
+  },
+  {
+    "suite": "test/imd/modules/MugiIMDLedgerTerminal.t.sol:MugiIMDLedgerTerminalTest",
+    "test": "testEmergencyRewardsIncludeFrozenWalletAndVirtualBalancesAndEarlierEth()",
+    "status": "Success",
+    "reason": null,
+    "kind": {
+      "Unit": {
+        "gas": 8641692
+      }
+    }
+  },
+  {
+    "suite": "test/imd/modules/MugiIMDLedgerTerminal.t.sol:MugiIMDLedgerTerminalTest",
+    "test": "testEmergencyUnallocatedCrewSharesAndRemaindersNeverEnterPlayerReserve()",
+    "status": "Success",
+    "reason": null,
+    "kind": {
+      "Unit": {
+        "gas": 4862305
+      }
+    }
+  },
+  {
+    "suite": "test/imd/modules/MugiIMDLedgerTerminal.t.sol:MugiIMDLedgerTerminalTest",
+    "test": "testExpirationCannotResurrectSyncedOrLazyClaimsInEitherTerminalMode()",
+    "status": "Success",
+    "reason": null,
+    "kind": {
+      "Unit": {
+        "gas": 16635639
+      }
+    }
+  },
+  {
+    "suite": "test/imd/modules/MugiIMDLedgerTerminal.t.sol:MugiIMDLedgerTerminalTest",
+    "test": "testFuzzEagerMaterializationAndLateSyncHaveIdenticalEmergencyRights(uint8,uint96)",
+    "status": "Success",
+    "reason": null,
+    "kind": {
+      "Fuzz": {
+        "first_case": {
+          "gas": 13283470,
+          "stipend": 21464
+        },
+        "runs": 256,
+        "mean_gas": 22395884,
+        "median_gas": 21685153,
+        "failed_corpus_replays": 0
+      }
+    }
+  },
+  {
+    "suite": "test/imd/modules/MugiIMDLedgerTerminal.t.sol:MugiIMDLedgerTerminalTest",
+    "test": "testNormalFinalizePreservesSyncedAndLazyEscrowAndOnlyUnreservedInventoryCanLeave()",
+    "status": "Success",
+    "reason": null,
+    "kind": {
+      "Unit": {
+        "gas": 18183782
+      }
+    }
+  },
+  {
+    "suite": "test/imd/modules/MugiIMDStateModules.t.sol:MugiIMDStateModulesTest",
+    "test": "testAllBudgetMutatorsRequireHook()",
+    "status": "Success",
+    "reason": null,
+    "kind": {
+      "Unit": {
+        "gas": 103800
+      }
+    }
+  },
+  {
+    "suite": "test/imd/modules/MugiIMDStateModules.t.sol:MugiIMDStateModulesTest",
+    "test": "testApprovalUsesHookHashDomainAndConsumerThroughOrdinaryCall()",
+    "status": "Success",
+    "reason": null,
+    "kind": {
+      "Unit": {
+        "gas": 523802
+      }
+    }
+  },
+  {
+    "suite": "test/imd/modules/MugiIMDStateModules.t.sol:MugiIMDStateModulesTest",
+    "test": "testBudgetAuthorizesAccountsAndPreservesTradeCadence()",
+    "status": "Success",
+    "reason": null,
+    "kind": {
+      "Unit": {
+        "gas": 744543
+      }
+    }
+  },
+  {
+    "suite": "test/imd/modules/MugiIMDStateModules.t.sol:MugiIMDStateModulesTest",
+    "test": "testConstructorsAcceptCounterfactualHookAndRejectZero()",
+    "status": "Success",
+    "reason": null,
+    "kind": {
+      "Unit": {
+        "gas": 2385626
+      }
+    }
+  },
+  {
+    "suite": "test/imd/modules/MugiIMDStateModules.t.sol:MugiIMDStateModulesTest",
+    "test": "testOracleNegativeMeanRoundsDown()",
+    "status": "Success",
+    "reason": null,
+    "kind": {
+      "Unit": {
+        "gas": 139608
+      }
+    }
+  },
+  {
+    "suite": "test/imd/modules/MugiIMDStateModules.t.sol:MugiIMDStateModulesTest",
+    "test": "testOracleOnlyHookCanUpdateButAnyoneCanRead()",
+    "status": "Success",
+    "reason": null,
+    "kind": {
+      "Unit": {
+        "gas": 126199
+      }
+    }
+  },
+  {
+    "suite": "test/imd/modules/MugiIMDStateModules.t.sol:MugiIMDStateModulesTest",
+    "test": "testOracleRequiresHistoryAndRejectsSpotDeviation()",
+    "status": "Success",
+    "reason": null,
+    "kind": {
+      "Unit": {
+        "gas": 135910
+      }
+    }
+  },
+  {
+    "suite": "test/imd/modules/MugiIMDVerifier.t.sol:MugiIMDVerifierTest",
+    "test": "testCanonicalIMDProtocolDigestAndSignatureVector()",
+    "status": "Success",
+    "reason": null,
+    "kind": {
+      "Unit": {
+        "gas": 14041
+      }
+    }
+  },
+  {
+    "suite": "test/imd/modules/MugiIMDVerifier.t.sol:MugiIMDVerifierTest",
+    "test": "testCrossChainReplayRejected()",
+    "status": "Success",
+    "reason": null,
+    "kind": {
+      "Unit": {
+        "gas": 32053
+      }
+    }
+  },
+  {
+    "suite": "test/imd/modules/MugiIMDVerifier.t.sol:MugiIMDVerifierTest",
+    "test": "testExpiryFutureIssueAndStaleAnswerRejected()",
+    "status": "Success",
+    "reason": null,
+    "kind": {
+      "Unit": {
+        "gas": 121424
+      }
+    }
+  },
+  {
+    "suite": "test/imd/modules/MugiIMDVerifier.t.sol:MugiIMDVerifierTest",
+    "test": "testMalformedAndFutureBlockMetadataRejected()",
+    "status": "Success",
+    "reason": null,
+    "kind": {
+      "Unit": {
+        "gas": 121394
+      }
+    }
+  },
+  {
+    "suite": "test/imd/modules/MugiIMDVerifier.t.sol:MugiIMDVerifierTest",
+    "test": "testOnlyOwnerCanPin()",
+    "status": "Success",
+    "reason": null,
+    "kind": {
+      "Unit": {
+        "gas": 34717
+      }
+    }
+  },
+  {
+    "suite": "test/imd/modules/MugiIMDVerifier.t.sol:MugiIMDVerifierTest",
+    "test": "testOwnerCannotRotateSignerOrWeakenEvidencePolicy()",
+    "status": "Success",
+    "reason": null,
+    "kind": {
+      "Unit": {
+        "gas": 107728
+      }
+    }
+  },
+  {
+    "suite": "test/imd/modules/MugiIMDVerifier.t.sol:MugiIMDVerifierTest",
+    "test": "testPanelPolicyRejectsMinorityAndImpossibleCounts()",
+    "status": "Success",
+    "reason": null,
+    "kind": {
+      "Unit": {
+        "gas": 151298
+      }
+    }
+  },
+  {
+    "suite": "test/imd/modules/MugiIMDVerifier.t.sol:MugiIMDVerifierTest",
+    "test": "testRevocationCannotBeRepinned()",
+    "status": "Success",
+    "reason": null,
+    "kind": {
+      "Unit": {
+        "gas": 98612
+      }
+    }
+  },
+  {
+    "suite": "test/imd/modules/MugiIMDVerifier.t.sol:MugiIMDVerifierTest",
+    "test": "testSignatureVerificationFitsCallbackStipend()",
+    "status": "Success",
+    "reason": null,
+    "kind": {
+      "Unit": {
+        "gas": 40767
+      }
+    }
+  },
+  {
+    "suite": "test/imd/modules/MugiIMDVerifier.t.sol:MugiIMDVerifierTest",
+    "test": "testTamperedSignatureRejected()",
+    "status": "Success",
+    "reason": null,
+    "kind": {
+      "Unit": {
+        "gas": 38804
+      }
+    }
+  },
+  {
+    "suite": "test/imd/modules/MugiIMDVerifier.t.sol:MugiIMDVerifierTest",
+    "test": "testUnpinnedAndWrongQuestionOrAnswerRejected()",
+    "status": "Success",
+    "reason": null,
+    "kind": {
+      "Unit": {
+        "gas": 118096
+      }
+    }
+  },
+  {
+    "suite": "test/imd/modules/MugiIMDVerifier.t.sol:MugiIMDVerifierTest",
+    "test": "testValidPinnedPlanAndConsumerReplayGuard()",
+    "status": "Success",
+    "reason": null,
+    "kind": {
+      "Unit": {
+        "gas": 161102
+      }
+    }
+  },
+  {
+    "suite": "test/imd/modules/MugiIMDVerifier.t.sol:MugiIMDVerifierTest",
+    "test": "testWrongConsumerAndDomainAreRejected()",
+    "status": "Success",
+    "reason": null,
+    "kind": {
+      "Unit": {
+        "gas": 139844
+      }
+    }
+  }
+]

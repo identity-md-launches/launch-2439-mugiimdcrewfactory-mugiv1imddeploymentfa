@@ -130,7 +130,8 @@ contract MugiIMDGameHook {
     constructor(Configuration memory c) {
         if (c.owner == address(0) || c.team == address(0) || c.community == address(0)
             || c.v2MigrationTarget == address(0) || c.community == c.owner || c.community == c.team
-            || c.manager == address(0) || c.ledger == address(0) || c.engine == address(0)
+            || c.v2MigrationTarget == c.owner || c.v2MigrationTarget == c.team
+            || c.v2MigrationTarget == c.community || c.manager == address(0) || c.ledger == address(0) || c.engine == address(0)
             || c.budgets == address(0) || c.prices == address(0) || c.randomnessProvider == address(0)
             || c.airdrop == address(0) || c.crewFactory == address(0)
             || c.initialSupply < 1000 || c.initialSupply > 1e36
@@ -161,8 +162,10 @@ contract MugiIMDGameHook {
     receive() external payable {}
 
     /// @notice A replacement wallet must accept before any owner privilege moves.
+    /// The immutable community treasury and V2 receiver can never become owner.
     function transferOwnership(address newOwner) external onlyOwner {
-        if (newOwner == address(0) || newOwner == owner || newOwner == communityTreasury) revert InvalidConfiguration();
+        if (newOwner == address(0) || newOwner == owner || newOwner == communityTreasury
+            || newOwner == v2MigrationTarget) revert InvalidConfiguration();
         pendingOwner = newOwner;
         emit OwnershipTransferStarted(owner, newOwner);
     }

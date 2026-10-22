@@ -1,0 +1,66 @@
+{
+  "tests": {
+    "passed": 153,
+    "failed": 0,
+    "skipped": 2,
+    "suites": 19,
+    "skippedReason": "two mainnet-fork suites skip without MUGI_IMD_MAINNET_FORK_RPC"
+  },
+  "fuzzSeed": "0x94beb01116dd215d8a6e482289327c93cc7086aa45891bb2b169349f49b492c8",
+  "repairedFrom": "b553ba7",
+  "auditFindingsAddressed": [
+    "71d0d1a94c452391d48f7ef404731de4b6f21c02b82255b29ec0cb471ea0aced",
+    "f223bf7c9fdbe104f7e9d769d407231051e654889ea464f08073888fdee74017"
+  ],
+  "auditFindingsDisclosureOnly": [
+    "8a8c8bdae6281f1715c105e80bdae94b72299d2b491be752b824aa189e1552c4",
+    "2f6d28eba0f64459085ab3a4b3560f67c2c99f012ba5a4c49b512c6d3d75c224",
+    "a4181dd5eca86ad7fe1c298518062ee7a5cdc60ce1c092b802f4be3c24a73eba"
+  ],
+  "artifactReviewPassed": true,
+  "hookRawCreationCodeHash": "0x53dae9ddbc8d673f9489f01afbd240331231d723e052e2ecf82b82fa68852b64",
+  "hook": {
+    "rawCreationCodeHash": "0x53dae9ddbc8d673f9489f01afbd240331231d723e052e2ecf82b82fa68852b64",
+    "runtimeBytes": 23635,
+    "initcodeBytesWithCompleteConfiguration": 26079
+  },
+  "factories": {
+    "MugiIMDCrewFactory": {
+      "runtimeBytes": 7180,
+      "initcodeBytesIncludingOwner": 7366
+    },
+    "MugiV1IMDDeploymentFactory": {
+      "runtimeBytes": 21064,
+      "initcodeBytesIncludingOwner": 47002
+    },
+    "MugiIMDAccountingFactory": {
+      "runtimeBytes": 18963,
+      "initcodeBytesIncludingOwner": 19148
+    },
+    "MugiIMDEngineFactory": {
+      "runtimeBytes": 13168,
+      "initcodeBytesIncludingOwner": 13353
+    }
+  },
+  "fourFactoryCreationMeter": {
+    "rawCreate2GasIncludingCodeDeposit": 12296955,
+    "runtimeCodeDepositGas": 12075000,
+    "conservativeIndependentTransactionBound": 14824595,
+    "transactionGasCap": 16777216,
+    "priorLocalAnvilReceiptGas": 14187986
+  },
+  "toolchain": {
+    "forge": "forge Version: 1.8.3\nCommit SHA: cae51ad458f6abb64852b7709eb784352429825d\nBuild Timestamp: 2026-09-15T10:46:16.519267388Z (1789469176)\nBuild Profile: dist",
+    "solidity": "0.8.26",
+    "evm": "cancun",
+    "viaIR": true,
+    "optimizerRuns": 200,
+    "bytecodeHash": "none"
+  },
+  "sourceAdmissionConfirmed": false,
+  "publicDeploymentClaimed": false,
+  "explorerVerification": false,
+  "reviewedAtUtc": "2026-10-22T00:14:21.592033+00:00",
+  "manifestMatches": true,
+  "disclosedDescendants": 19
+}

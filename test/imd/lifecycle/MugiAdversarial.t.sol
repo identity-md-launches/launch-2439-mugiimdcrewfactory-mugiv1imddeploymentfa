@@ -165,7 +165,7 @@ contract MugiAdversarialTest is MugiGameTestBase {
         (, uint256 aliceReward,) = game.previewAccount(ALICE);
         assertEq(aliceReward, 0, "final LP principal does not create a holder reward");
         uint256 pendingMigration = address(game).balance - game.teamEth() - game.reservedPlayerEth();
-        game.migrateToV2(address(this));
+        game.migrateToV2(_migrationTarget());
         assertEq(migratedEth, pendingMigration);
         _assertSolvent();
     }
