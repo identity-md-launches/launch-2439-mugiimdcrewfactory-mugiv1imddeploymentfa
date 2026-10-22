@@ -1,0 +1,567 @@
+{
+  "scope": "Tests-only local regression evidence; no independent audit, admission or deployment authority.",
+  "checkedAtUtc": "2026-10-22T00:39:41.358460+00:00",
+  "productionSourcePin": "2907a8fec35bd79bde8f699ec8502bb5d644a3a4",
+  "auditedBaseline": "9901dc71030df5818e4b307df1c5c43506346c12",
+  "auditJob": "0c8421fb-4f6d-4650-8c90-d9fd7d7a79c5",
+  "acceptedAuditReportHash": "573ea9d5650bafcdc892589b64157aecbe9239f7efb89fa37b3d9bed699654f2",
+  "productionSourceChangedByThisAssignment": false,
+  "preExistingInventoryEntriesChecked": 639,
+  "preExistingInventoryChanges": [],
+  "toolchain": {
+    "forge": "1.8.3",
+    "solidity": "0.8.26",
+    "evm": "cancun",
+    "optimizer": true,
+    "optimizerRuns": 200,
+    "viaIR": true,
+    "bytecodeHash": "none"
+  },
+  "fuzzSeed": "0x94beb01116dd215d8a6e482289327c93cc7086aa45891bb2b169349f49b492c8",
+  "build": {
+    "exitCode": 0,
+    "command": "forge build --offline --out test/scratch/out --cache-path test/scratch/cache",
+    "result": "Compiler run successful with warnings"
+  },
+  "test": {
+    "exitCode": 0,
+    "command": "forge test --offline --out test/scratch/out --cache-path test/scratch/cache --json",
+    "suites": 26,
+    "passed": 172,
+    "failed": 0,
+    "skipped": 2,
+    "addedTests": 19,
+    "addedInvariantCampaigns": 5,
+    "randomizedHandlerCalls": 49152,
+    "unexpectedHandlerReverts": 0
+  },
+  "formatCheck": {
+    "exitCode": 0,
+    "scope": [
+      "test/imd/MugiAirdropAuthorization.t.sol",
+      "test/imd/MugiManifestConstructors.t.sol",
+      "test/imd/invariant/MugiAirdropInvariant.t.sol",
+      "test/imd/invariant/MugiBudgetInvariant.t.sol",
+      "test/imd/invariant/MugiSeasonInvariant.t.sol",
+      "test/imd/invariant/MugiTerminalInvariant.t.sol"
+    ]
+  },
+  "skipped": [
+    {
+      "suite": "test/imd/MugiIMDProjectFactoryFork.t.sol:MugiIMDProjectFactoryForkTest",
+      "test": "testMainnetFactoryRecordsFourEntriesThenConstructorCompleteGraphSeedsTenPools()",
+      "reason": "Existing optional RPC-dependent fork suite; no RPC supplied."
+    },
+    {
+      "suite": "test/imd/lifecycle/MugiGameHookMainnetFork.t.sol:MugiGameHookMainnetForkTest",
+      "test": "setUp()",
+      "reason": "Existing optional RPC-dependent fork suite; no RPC supplied."
+    }
+  ],
+  "campaigns": [
+    {
+      "suite": "test/imd/invariant/MugiAirdropInvariant.t.sol:MugiAirdropAccountingInvariantTest",
+      "test": "invariant_registrationAndFiniteAllocationRemainConserved()",
+      "runs": 128,
+      "calls": 8192,
+      "unexpectedHandlerReverts": 0
+    },
+    {
+      "suite": "test/imd/invariant/MugiBudgetInvariant.t.sol:MugiBudgetAccountingInvariantTest",
+      "test": "invariant_allocationsAndActualSpendingAlwaysConserveTheBudget()",
+      "runs": 128,
+      "calls": 12288,
+      "unexpectedHandlerReverts": 0
+    },
+    {
+      "suite": "test/imd/invariant/MugiSeasonInvariant.t.sol:MugiSeasonAccountingInvariantTest",
+      "test": "invariant_realPoolCustodyAndLedgerClaimsReconcile()",
+      "runs": 128,
+      "calls": 12288,
+      "unexpectedHandlerReverts": 0
+    },
+    {
+      "suite": "test/imd/invariant/MugiTerminalInvariant.t.sol:MugiEmergencyCustodyInvariantTest",
+      "test": "invariant_emergencyPreservesLiabilitiesAndNeverMigrates()",
+      "runs": 128,
+      "calls": 8192,
+      "unexpectedHandlerReverts": 0
+    },
+    {
+      "suite": "test/imd/invariant/MugiTerminalInvariant.t.sol:MugiFinaleCustodyInvariantTest",
+      "test": "invariant_finaleCustodyAndEarnedRightsSurviveEveryOrdering()",
+      "runs": 128,
+      "calls": 8192,
+      "unexpectedHandlerReverts": 0
+    }
+  ],
+  "newTestResults": [
+    {
+      "suite": "test/imd/MugiAirdropAuthorization.t.sol:MugiAirdropAuthorizationTest",
+      "test": "testAutomaticLaunchThresholdAndSevenDayBoundary()",
+      "status": "Success"
+    },
+    {
+      "suite": "test/imd/MugiAirdropAuthorization.t.sol:MugiAirdropAuthorizationTest",
+      "test": "testClaimRejectsForeignWalletAndExpiredAttestationThenAcceptsFreshOne()",
+      "status": "Success"
+    },
+    {
+      "suite": "test/imd/MugiAirdropAuthorization.t.sol:MugiAirdropAuthorizationTest",
+      "test": "testFuzzCohortCannotExceedFivePercentOrPerAccountCap(uint8)",
+      "status": "Success",
+      "fuzz": {
+        "runs": 128,
+        "mean_gas": 9958193,
+        "median_gas": 3868060,
+        "failed_corpus_replays": 0
+      }
+    },
+    {
+      "suite": "test/imd/MugiAirdropAuthorization.t.sol:MugiAirdropAuthorizationTest",
+      "test": "testRegistrationDeadlineIsInclusiveButExpiredSignatureDoesNotConsumeIdentity()",
+      "status": "Success"
+    },
+    {
+      "suite": "test/imd/MugiAirdropAuthorization.t.sol:MugiAirdropAuthorizationTest",
+      "test": "testRegistrationSignatureBindsAccountCrewSocialAndContract()",
+      "status": "Success"
+    },
+    {
+      "suite": "test/imd/MugiAirdropAuthorization.t.sol:MugiAirdropAuthorizationTest",
+      "test": "testRejectedTokenPaymentRollsBackClaimFlagAndCanBeRetriedAfterFunding()",
+      "status": "Success"
+    },
+    {
+      "suite": "test/imd/MugiAirdropAuthorization.t.sol:MugiAirdropAuthorizationTest",
+      "test": "testSocialIdentityAndWalletCannotRegisterTwiceEvenWithFreshValidSignatures()",
+      "status": "Success"
+    },
+    {
+      "suite": "test/imd/MugiManifestConstructors.t.sol:MugiManifestConstructorsTest",
+      "test": "testEveryManifestConstructorRejectsValueAndZeroOwner()",
+      "status": "Success"
+    },
+    {
+      "suite": "test/imd/MugiManifestConstructors.t.sol:MugiManifestConstructorsTest",
+      "test": "testExactManifestBatchHasFourOwnerBoundFactoriesAndNoConstructorDependencies()",
+      "status": "Success"
+    },
+    {
+      "suite": "test/imd/invariant/MugiAirdropInvariant.t.sol:MugiAirdropAccountingInvariantTest",
+      "test": "invariant_registrationAndFiniteAllocationRemainConserved()",
+      "status": "Success",
+      "invariant": {
+        "runs": 128,
+        "calls": 8192,
+        "reverts": 0,
+        "metrics": {
+          "test/imd/invariant/MugiAirdropInvariant.t.sol:AirdropAccountingHandler.advance": {
+            "calls": 1355,
+            "reverts": 0,
+            "discards": 0
+          },
+          "test/imd/invariant/MugiAirdropInvariant.t.sol:AirdropAccountingHandler.claim": {
+            "calls": 1380,
+            "reverts": 0,
+            "discards": 0
+          },
+          "test/imd/invariant/MugiAirdropInvariant.t.sol:AirdropAccountingHandler.retire": {
+            "calls": 1406,
+            "reverts": 0,
+            "discards": 0
+          },
+          "test/imd/invariant/MugiAirdropInvariant.t.sol:AirdropAccountingHandler.register": {
+            "calls": 1349,
+            "reverts": 0,
+            "discards": 0
+          },
+          "test/imd/invariant/MugiAirdropInvariant.t.sol:AirdropAccountingHandler.unauthorizedLifecycle": {
+            "calls": 1326,
+            "reverts": 0,
+            "discards": 0
+          },
+          "test/imd/invariant/MugiAirdropInvariant.t.sol:AirdropAccountingHandler.launch": {
+            "calls": 1376,
+            "reverts": 0,
+            "discards": 0
+          }
+        },
+        "failed_corpus_replays": 0
+      }
+    },
+    {
+      "suite": "test/imd/invariant/MugiAirdropInvariant.t.sol:MugiAirdropAccountingInvariantTest",
+      "test": "testAirdropHandlerExercisesWrongAttestationReplayAndExactWindow()",
+      "status": "Success"
+    },
+    {
+      "suite": "test/imd/invariant/MugiBudgetInvariant.t.sol:MugiBudgetAccountingInvariantTest",
+      "test": "invariant_allocationsAndActualSpendingAlwaysConserveTheBudget()",
+      "status": "Success",
+      "invariant": {
+        "runs": 128,
+        "calls": 12288,
+        "reverts": 0,
+        "metrics": {
+          "test/imd/invariant/MugiBudgetInvariant.t.sol:BudgetAccountingHandler.approve": {
+            "calls": 2426,
+            "reverts": 0,
+            "discards": 0
+          },
+          "test/imd/invariant/MugiBudgetInvariant.t.sol:BudgetAccountingHandler.authorize": {
+            "calls": 2478,
+            "reverts": 0,
+            "discards": 0
+          },
+          "test/imd/invariant/MugiBudgetInvariant.t.sol:BudgetAccountingHandler.account": {
+            "calls": 2459,
+            "reverts": 0,
+            "discards": 0
+          },
+          "test/imd/invariant/MugiBudgetInvariant.t.sol:BudgetAccountingHandler.unauthorized": {
+            "calls": 2405,
+            "reverts": 0,
+            "discards": 0
+          },
+          "test/imd/invariant/MugiBudgetInvariant.t.sol:BudgetAccountingHandler.advance": {
+            "calls": 2520,
+            "reverts": 0,
+            "discards": 0
+          }
+        },
+        "failed_corpus_replays": 0
+      }
+    },
+    {
+      "suite": "test/imd/invariant/MugiBudgetInvariant.t.sol:MugiBudgetAccountingInvariantTest",
+      "test": "testExpiredPlanFallbackPreservesAlreadySpentOverweightAllocation()",
+      "status": "Success"
+    },
+    {
+      "suite": "test/imd/invariant/MugiSeasonInvariant.t.sol:MugiSeasonAccountingInvariantTest",
+      "test": "invariant_realPoolCustodyAndLedgerClaimsReconcile()",
+      "status": "Success",
+      "invariant": {
+        "runs": 128,
+        "calls": 12288,
+        "reverts": 0,
+        "metrics": {
+          "test/imd/invariant/MugiSeasonInvariant.t.sol:SeasonAccountingHandler.progress": {
+            "calls": 2118,
+            "reverts": 0,
+            "discards": 0
+          },
+          "test/imd/invariant/MugiSeasonInvariant.t.sol:SeasonAccountingHandler.claim": {
+            "calls": 1993,
+            "reverts": 0,
+            "discards": 0
+          },
+          "test/imd/invariant/MugiSeasonInvariant.t.sol:SeasonAccountingHandler.retireDrop": {
+            "calls": 2113,
+            "reverts": 0,
+            "discards": 0
+          },
+          "test/imd/invariant/MugiSeasonInvariant.t.sol:SeasonAccountingHandler.trade": {
+            "calls": 2028,
+            "reverts": 0,
+            "discards": 0
+          },
+          "test/imd/invariant/MugiSeasonInvariant.t.sol:SeasonAccountingHandler.fees": {
+            "calls": 2058,
+            "reverts": 0,
+            "discards": 0
+          },
+          "test/imd/invariant/MugiSeasonInvariant.t.sol:SeasonAccountingHandler.wallet": {
+            "calls": 1978,
+            "reverts": 0,
+            "discards": 0
+          }
+        },
+        "failed_corpus_replays": 0
+      }
+    },
+    {
+      "suite": "test/imd/invariant/MugiSeasonInvariant.t.sol:MugiSeasonAccountingInvariantTest",
+      "test": "testHandlerReachesNineRoundsWithRealTradesAndClaims()",
+      "status": "Success"
+    },
+    {
+      "suite": "test/imd/invariant/MugiTerminalInvariant.t.sol:MugiEmergencyCustodyInvariantTest",
+      "test": "invariant_emergencyPreservesLiabilitiesAndNeverMigrates()",
+      "status": "Success",
+      "invariant": {
+        "runs": 128,
+        "calls": 8192,
+        "reverts": 0,
+        "metrics": {
+          "test/imd/invariant/MugiTerminalInvariant.t.sol:TerminalCustodyHandler.claimTokens": {
+            "calls": 900,
+            "reverts": 0,
+            "discards": 0
+          },
+          "test/imd/invariant/MugiTerminalInvariant.t.sol:TerminalCustodyHandler.excessiveClaim": {
+            "calls": 888,
+            "reverts": 0,
+            "discards": 0
+          },
+          "test/imd/invariant/MugiTerminalInvariant.t.sol:TerminalCustodyHandler.transferOrBurn": {
+            "calls": 911,
+            "reverts": 0,
+            "discards": 0
+          },
+          "test/imd/invariant/MugiTerminalInvariant.t.sol:TerminalCustodyHandler.sweep": {
+            "calls": 897,
+            "reverts": 0,
+            "discards": 0
+          },
+          "test/imd/invariant/MugiTerminalInvariant.t.sol:TerminalCustodyHandler.withdrawTeam": {
+            "calls": 910,
+            "reverts": 0,
+            "discards": 0
+          },
+          "test/imd/invariant/MugiTerminalInvariant.t.sol:TerminalCustodyHandler.claimEth": {
+            "calls": 948,
+            "reverts": 0,
+            "discards": 0
+          },
+          "test/imd/invariant/MugiTerminalInvariant.t.sol:TerminalCustodyHandler.migrate": {
+            "calls": 916,
+            "reverts": 0,
+            "discards": 0
+          },
+          "test/imd/invariant/MugiTerminalInvariant.t.sol:TerminalCustodyHandler.advance": {
+            "calls": 932,
+            "reverts": 0,
+            "discards": 0
+          },
+          "test/imd/invariant/MugiTerminalInvariant.t.sol:TerminalCustodyHandler.fallbackToCommunity": {
+            "calls": 890,
+            "reverts": 0,
+            "discards": 0
+          }
+        },
+        "failed_corpus_replays": 0
+      }
+    },
+    {
+      "suite": "test/imd/invariant/MugiTerminalInvariant.t.sol:MugiEmergencyCustodyInvariantTest",
+      "test": "testEmergencyHandlerExercisesClaimsAndFullExpiry()",
+      "status": "Success"
+    },
+    {
+      "suite": "test/imd/invariant/MugiTerminalInvariant.t.sol:MugiFinaleCustodyInvariantTest",
+      "test": "invariant_finaleCustodyAndEarnedRightsSurviveEveryOrdering()",
+      "status": "Success",
+      "invariant": {
+        "runs": 128,
+        "calls": 8192,
+        "reverts": 0,
+        "metrics": {
+          "test/imd/invariant/MugiTerminalInvariant.t.sol:TerminalCustodyHandler.withdrawTeam": {
+            "calls": 910,
+            "reverts": 0,
+            "discards": 0
+          },
+          "test/imd/invariant/MugiTerminalInvariant.t.sol:TerminalCustodyHandler.claimTokens": {
+            "calls": 900,
+            "reverts": 0,
+            "discards": 0
+          },
+          "test/imd/invariant/MugiTerminalInvariant.t.sol:TerminalCustodyHandler.fallbackToCommunity": {
+            "calls": 890,
+            "reverts": 0,
+            "discards": 0
+          },
+          "test/imd/invariant/MugiTerminalInvariant.t.sol:TerminalCustodyHandler.excessiveClaim": {
+            "calls": 888,
+            "reverts": 0,
+            "discards": 0
+          },
+          "test/imd/invariant/MugiTerminalInvariant.t.sol:TerminalCustodyHandler.sweep": {
+            "calls": 897,
+            "reverts": 0,
+            "discards": 0
+          },
+          "test/imd/invariant/MugiTerminalInvariant.t.sol:TerminalCustodyHandler.advance": {
+            "calls": 932,
+            "reverts": 0,
+            "discards": 0
+          },
+          "test/imd/invariant/MugiTerminalInvariant.t.sol:TerminalCustodyHandler.claimEth": {
+            "calls": 948,
+            "reverts": 0,
+            "discards": 0
+          },
+          "test/imd/invariant/MugiTerminalInvariant.t.sol:TerminalCustodyHandler.transferOrBurn": {
+            "calls": 911,
+            "reverts": 0,
+            "discards": 0
+          },
+          "test/imd/invariant/MugiTerminalInvariant.t.sol:TerminalCustodyHandler.migrate": {
+            "calls": 916,
+            "reverts": 0,
+            "discards": 0
+          }
+        },
+        "failed_corpus_replays": 0
+      }
+    },
+    {
+      "suite": "test/imd/invariant/MugiTerminalInvariant.t.sol:MugiFinaleCustodyInvariantTest",
+      "test": "testTerminalHandlerExercisesPartialClaimsFailureRetryAndExpiry()",
+      "status": "Success"
+    }
+  ],
+  "allSuiteCounts": {
+    "test/imd/MugiAirdropAuthorization.t.sol:MugiAirdropAuthorizationTest": {
+      "Success": 7
+    },
+    "test/imd/MugiIMDCrewToken.t.sol:MugiIMDCrewTokenTest": {
+      "Success": 16
+    },
+    "test/imd/MugiIMDProjectFactoryFork.t.sol:MugiIMDProjectFactoryForkTest": {
+      "Skipped": 1
+    },
+    "test/imd/MugiManifestConstructors.t.sol:MugiManifestConstructorsTest": {
+      "Success": 2
+    },
+    "test/imd/MugiTerminalConfiguration.t.sol:MugiTerminalConfigurationTest": {
+      "Success": 8
+    },
+    "test/imd/MugiV1IMDDeploymentFactory.t.sol:MugiV1IMDDeploymentFactoryTest": {
+      "Success": 12
+    },
+    "test/imd/invariant/MugiAirdropInvariant.t.sol:MugiAirdropAccountingInvariantTest": {
+      "Success": 2
+    },
+    "test/imd/invariant/MugiBudgetInvariant.t.sol:MugiBudgetAccountingInvariantTest": {
+      "Success": 2
+    },
+    "test/imd/invariant/MugiSeasonInvariant.t.sol:MugiSeasonAccountingInvariantTest": {
+      "Success": 2
+    },
+    "test/imd/invariant/MugiTerminalInvariant.t.sol:MugiEmergencyCustodyInvariantTest": {
+      "Success": 2
+    },
+    "test/imd/invariant/MugiTerminalInvariant.t.sol:MugiFinaleCustodyInvariantTest": {
+      "Success": 2
+    },
+    "test/imd/lifecycle/MugiAdversarial.t.sol:MugiAdversarialTest": {
+      "Success": 8
+    },
+    "test/imd/lifecycle/MugiCompatibilityHandoff.t.sol:MugiCompatibilityHandoffTest": {
+      "Success": 7
+    },
+    "test/imd/lifecycle/MugiEconomics.t.sol:MugiEconomicsTest": {
+      "Success": 6
+    },
+    "test/imd/lifecycle/MugiGameHook.t.sol:MugiGameHookTest": {
+      "Success": 18
+    },
+    "test/imd/lifecycle/MugiGameHookMainnetFork.t.sol:MugiGameHookMainnetForkTest": {
+      "Skipped": 1
+    },
+    "test/imd/lifecycle/MugiStallRecovery.t.sol:MugiFinaleRightsTest": {
+      "Success": 3
+    },
+    "test/imd/lifecycle/MugiStallRecovery.t.sol:MugiStallRecoveryTest": {
+      "Success": 9
+    },
+    "test/imd/lifecycle/MugiSwapRouter.t.sol:MugiSwapRouterTest": {
+      "Success": 14
+    },
+    "test/imd/modules/MugiIMDEngineSecurity.t.sol:MugiIMDEngineSecurityTest": {
+      "Success": 8
+    },
+    "test/imd/modules/MugiIMDLedgerSeason.t.sol:MugiIMDLedgerSeasonTest": {
+      "Success": 4
+    },
+    "test/imd/modules/MugiIMDLedgerSecurity.t.sol:MugiIMDLedgerSecurityTest": {
+      "Success": 7
+    },
+    "test/imd/modules/MugiIMDLedgerSnapshots.t.sol:MugiIMDLedgerSnapshotsTest": {
+      "Success": 5
+    },
+    "test/imd/modules/MugiIMDLedgerTerminal.t.sol:MugiIMDLedgerTerminalTest": {
+      "Success": 8
+    },
+    "test/imd/modules/MugiIMDStateModules.t.sol:MugiIMDStateModulesTest": {
+      "Success": 7
+    },
+    "test/imd/modules/MugiIMDVerifier.t.sol:MugiIMDVerifierTest": {
+      "Success": 13
+    }
+  },
+  "artifacts": {
+    "MugiIMDCrewFactory": {
+      "rawCreationBytes": 7334,
+      "runtimeBytes": 7180
+    },
+    "MugiV1IMDDeploymentFactory": {
+      "rawCreationBytes": 46970,
+      "runtimeBytes": 21064
+    },
+    "MugiIMDAccountingFactory": {
+      "rawCreationBytes": 19116,
+      "runtimeBytes": 18963
+    },
+    "MugiIMDEngineFactory": {
+      "rawCreationBytes": 13321,
+      "runtimeBytes": 13168
+    },
+    "MugiIMDGameHook": {
+      "rawCreationBytes": 25631,
+      "runtimeBytes": 23635
+    }
+  },
+  "hookRawCreationCodeHash": "0x53dae9ddbc8d673f9489f01afbd240331231d723e052e2ecf82b82fa68852b64",
+  "localFactoryCreationMeter": {
+    "test": "testFactoryCreationBatchHasConservativeGasHeadroom()",
+    "decodedLogs": [],
+    "limitation": "Local EVM creation measurement and conservative bound, not a transaction receipt or live launch simulation."
+  },
+  "sourceSha256": {
+    "src/game/MugiAirdrop.sol": "e5731986dc634e290bdcba60262a72baa59afbb33fbd24d9054e3c5b01560ffd",
+    "src/game/MugiCrewToken.sol": "4da2978c9863692db48021b31fb45ac76e9ee913acf966cd0d22081ee4657134",
+    "src/game/MugiIMDVerifier.sol": "675db74da875da5e4f5309b8d89cfba89a38473dcd64b15ee102c76e3e47a954",
+    "src/game/MugiReserveMath.sol": "83f863ce892a31768c81930f3d3cfb6daea7bf0de80de778cc965c50ee9a9bba",
+    "src/game/MugiVRFAdapter.sol": "090b2f5a7201a9224bbb46637ec0c5005f4fef3a165578c8c49e86be645cf6fb",
+    "src/imd/MugiIMDAccountingFactory.sol": "2c52125e77e72f1975740956e1752b7e2c36ed63c20c8563ee4faad812192226",
+    "src/imd/MugiIMDCrewFactory.sol": "3e083f3b26fdcc6263bbb0a1b4954656ebcb1b066d6b0b5d3caef51cd0ee33b2",
+    "src/imd/MugiIMDCrewToken.sol": "cc961d65e37b894343d1da6082974c1c6c5ed49fde6e42d9fc0320f1c78f18cc",
+    "src/imd/MugiIMDEngineFactory.sol": "eb1ee42f62ebceee3556d289b708d40ed4d969d1374f11f1f6c09e1911a0c2a0",
+    "src/imd/MugiIMDGameHook.sol": "9247674aa1359cd39b2ade43c3cfd5070601ee32a3ab001ed115885f92891f99",
+    "src/imd/MugiIMDSwapRouter.sol": "8f114de22a6414fa2c4a1319881754fcfeaceebce77b277afb0f3f0e92277655",
+    "src/imd/MugiV1IMDDeploymentFactory.sol": "6ad44fc0324082db96de135d0ca544c4b6aa797827fe55dc9a6e22d5e54ca803",
+    "src/imd/libraries/MugiIMDDeploymentAddresses.sol": "ed45d94f18f48cc33a5a291c410161536cd0e878777289b85f97cb4c5403535b",
+    "src/imd/libraries/MugiIMDV4Fees.sol": "64fec6b08c4317dcd1cdff5f13973016db92ffae2f191520b0ea601b55a69cac",
+    "src/imd/modules/MugiIMDBuybacks.sol": "102b2da0e164ff14de4804b94fbad18255d42c398aab9bdc6f6cc4c9495524f3",
+    "src/imd/modules/MugiIMDLedger.sol": "dd5fcf8481f5522801bf0d7bff243ce35fcfab77ec96a9c584d31c5ecb8da69f",
+    "src/imd/modules/MugiIMDPriceOracle.sol": "44f38a2781c9d8b6f9b0a798b7ff8f20b72817d3203a244c50c8cf322d533cdc",
+    "src/imd/modules/MugiIMDV4Engine.sol": "7eb592b9e0fcaf31a80b959994fe72426a898ab140bbdcac12a309000e58baa5"
+  },
+  "addedTestSha256": {
+    "test/imd/MugiAirdropAuthorization.t.sol": "a151020d8e570e4d6e7551f86533b396f4bffb1d54e17c5fa89590ace0fd8259",
+    "test/imd/MugiManifestConstructors.t.sol": "cbeec2b12c74dc4dead99e7f7864690e44b48d0b4845df206d7d2363680cc887",
+    "test/imd/invariant/MugiAirdropInvariant.t.sol": "b8a6785d3319e4e241333b8f509f90e0a96bc335c160b8a6af2dc9e41035e0ea",
+    "test/imd/invariant/MugiBudgetInvariant.t.sol": "118a155047a0c6a2a85a751c32c5d5f2bec9722e3635e821b90cd04dbabd1fd5",
+    "test/imd/invariant/MugiSeasonInvariant.t.sol": "158a31a5ae7ffe4bd2139ed36bc0769c97205e999f9495bf79e16a1081093cc5",
+    "test/imd/invariant/MugiTerminalInvariant.t.sol": "4d24f12ac89f3cd51c3a4509961bea1c9cca296158a7f70c34ca105a5f2ddc57"
+  },
+  "auditedSourceDeltaSha256": "ca5dc7b6653a0779cd2f8ac9d5898e5504cf61dab9de14e745421f04838459fd",
+  "admissionOutcome": "Not established by this tests-only task; independent review and platform admission remain required.",
+  "publicDeploymentAttempted": false,
+  "imdLaunchRecord": null,
+  "deployedFactoryAddresses": null,
+  "transactionReceipts": null,
+  "explorerVerificationSubmitted": false,
+  "limitations": [
+    "Protected verifier deployment tests require verifier-provided launch fixtures and were read, not directly run; the new exact-manifest probe covers local owner binding and constructor behavior.",
+    "Current-pin V2 tests use a test-only adversarial receiver. Historical actual-V2 integration evidence was inspected but not rerun; its external V2 sources are not in this tree.",
+    "Live V2 receiver remains null in the non-executable child plan. No substitute live service or deployment settings were invented.",
+    "Community wallet is distinct from owner/team but belongs to the same operator; address separation does not establish independent governance or custody.",
+    "Official-pool and reward-materialization gates remain; ERC20 transfers remain unrestricted. PoolManager custody is excluded from player eligibility.",
+    "No reproducible implementation defect was observed in the added tests; passing tests are not a clean-audit claim."
+  ]
+}
